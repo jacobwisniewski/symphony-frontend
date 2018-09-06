@@ -1,6 +1,7 @@
 import createHistory from "history/createBrowserHistory"
 import { createStore } from "redux"
 import { connectRouter } from "connected-react-router";
+import { rootReducer } from './modules' // Import root reducer from modules/index.js
 
 // Create a history object. source:https://github.com/ReactTraining/history 
 export const history = createHistory()
