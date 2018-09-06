@@ -6,6 +6,7 @@ import { rootReducer } from './modules' // Import root reducer from modules/inde
 // Create a history object. source:https://github.com/ReactTraining/history 
 export const history = createHistory()
 
+
 // Initialize state (this can contain what you initially want in your state)
 const initialState = {}
 
@@ -14,5 +15,9 @@ export default createStore(
     connectRouter(history)(rootReducer), // Reducer with router state 
     initialState = {}
 )
+// Some sources:
+// https://github.com/supasate/connected-react-router
+// https://github.com/notrab/create-react-app-redux/tree/master/src Used this for reference
+// https://redux.js.org/api/createstore
 
 // TODO: Create reducer 
