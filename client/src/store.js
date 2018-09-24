@@ -13,7 +13,7 @@ const initialState = {}
 // Create a store that holds the state tree, this is exporting our "store"
 export default createStore(
     connectRouter(history)(combineReducers), // Reducer with router state 
-    {}
+    initialState
 )
 // Some sources:
 // https://github.com/supasate/connected-react-router
