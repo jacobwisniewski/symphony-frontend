@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 
-class Start extends Component {
+class Login extends Component {
     constructor() {
         super()
         this.state = {
@@ -9,7 +9,9 @@ class Start extends Component {
         }
     }
     componentDidMount() {
-
+        this.setState({
+            isLoading: true
+        })
     }
     
     
@@ -17,6 +19,21 @@ class Start extends Component {
         const url = 'http://localhost:5000/api/callback'
         fetch(url)
         .then(response => response.json())
+        .then(data => this.setState({
+            url: data.url,
+            state: data.state,
+            isLoading: false
+        }))
+    }
+    onClick() {
+        window.location.hred = this.state.url
+    }
+    render() {
+        if (this.state.isLoading) {
+            return(<p>Loading...</p>)
+        } else {
+            return(<button onClick={this.onClick}>Login</button>)
+        }
     }
 }
 

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
+import Login from "../login"
 
 class App extends Component {
     render() {
-        return(<p>Hello</p>)
+        return(
+        <Route exact path='/' component={Login} />)
     }
 }
 
