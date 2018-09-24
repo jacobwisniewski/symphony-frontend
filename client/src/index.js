@@ -17,4 +17,8 @@ render(
     </ConnectedRouter>
   </Provider>,
   target
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> 068add77e7c6af14c6964b507c37a91e036f342a
