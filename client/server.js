@@ -3,8 +3,9 @@ const path = require('path');
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/ping', function (req, res) {
- return res.send('pong');
+app.get('/callback', function (req, res) {
+  var code = req.query.code || null;
+  return res.send(code);
 });
 
 app.get('/', function (req, res) {
