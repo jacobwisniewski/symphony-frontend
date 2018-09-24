@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
-import { history, store } from "./store.js"
+import store, { history } from "./store.js"
 import registerServiceWorker from "./registerServiceWorker";
-import { App } from './app/app.js'
+import App from './containers/app/app.js'
 
 const target = document.querySelector("#root");
 
