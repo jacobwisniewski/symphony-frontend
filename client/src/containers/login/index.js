@@ -18,11 +18,6 @@ class Start extends Component {
         fetch(url)
         .then(response => response.json())
     }
-    render() {
-        return (
-
-        )
-    }
 }
 
 export default Login
