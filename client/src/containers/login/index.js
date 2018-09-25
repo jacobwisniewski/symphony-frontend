@@ -22,7 +22,7 @@ class Login extends Component {
         this.setState({
           url: data.url,
           isLoading: false
-        }, () => {console.log(this.state)})
+        })
       );
   }
 
