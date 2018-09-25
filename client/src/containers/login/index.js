@@ -26,10 +26,6 @@ class Login extends Component {
       );
   }
 
-  onClick() {
-    window.location.href = this.state.url;
-  }
-
   render() {
     if (this.state.isLoading) {
       return <p>Loading...</p>;
