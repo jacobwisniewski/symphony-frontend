@@ -1,22 +1,25 @@
-export const FETCH_URL_BEGIN = "FETCH_URL_BEGIN";
-export const FETCH_URL_SUCCESS = "FETCH_URL_SUCCESS";
-
-export const fetchUrlBegin = () => ({
-  type: FETCH_URL_BEGIN
-});
-
-export const fetchUrlSucess = url => ({
-  type: FETCH_URL_SUCCESS,
-  payload: { url }
-});
-
-export function fetchUrl() {
-  return dispatch => {
-    dispatch(fetchUrlBegin());
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-          dispatch(fetchUrlSucess(data.url))
-      });
-  };
-}
+export const getUrl = () => dispatch => {
+  // Start the fetch action
+  dispatch({
+    type: "GET_URL_BEGIN"
+  });
+  const url = "http://localhost:5000/api/callback";
+  fetch(url)
+    // Get the response and body from the call
+    .then(response => response.json().then(body => ({ response, body })))
+    .then(({ response, body }) => {
+      if (!response.ok) {
+        // If the request failed, dispatch the FAILURE action
+        dispatch({
+          type: "GET_URL_FAILURE",
+          payload: body.error
+        });
+      } else {
+        // The call was a success, push the data to SUCCESS action
+        dispatch({
+          type: "GET_URL_SUCCESS",
+          payload: body.url
+        });
+      }
+    });
+};

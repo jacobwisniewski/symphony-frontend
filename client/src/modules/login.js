@@ -1,75 +1,37 @@
-import { FETCH_URL_BEGIN, FETCH_URL_SUCCESS } from "./loginActions";
-
-export const GET_GIG_REQUESTED = "login/GET_GIG_REQUESTED";
-export const JOIN_GIG_REQUESTED = "login/JOIN_GIG_REQUESTED";
-export const GET_PROFILE_REQUESTED = "login/GET_PROFILE_REQUESTED";
 
 const initialState = {
-  url: null,
-  loading: false,
-  getgig: false,
-  joingig: false,
-  getprofile: false
-};
+    url: null,
+    loading: false,
+    error: null
+}
 
 export default (state = initialState, action) => {
-  switch (action.type) {
-    case GET_GIG_REQUESTED:
-      return {
-        ...state,
-        getgig: true
-      };
+    switch (action.type) {
+        // GET_URL_BEGIN action sets 'loading' as true
+        case 'GET_URL_BEGIN':
+        return {
+            ...state,
+            loading: true
+        }
 
-    case JOIN_GIG_REQUESTED:
-      return {
-        ...state,
-        joingig: true
-      };
+        // GET_URL_SUCCESS action sets 'url' as the fetched url and 'loading'
+        // as false
+        case 'GET_URL_SUCCESS':
+        return {
+            ...state,
+            url: action.payload, // The url we got back from the call
+            loading: false
+        }
 
-    case GET_PROFILE_REQUESTED:
-      return {
-        ...state,
-        getprofile: true
-      };
-
-    case FETCH_URL_BEGIN:
-      return {
-        ...state,
-        loading: true
-      };
-
-    case FETCH_URL_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        url: action.payload.url
-      };
-
-    default:
-      return state;
-  }
-};
-
-export const joinGig = () => {
-  return dispatch => {
-    dispatch({
-      type: JOIN_GIG_REQUESTED
-    });
-  };
-};
-
-export const getGig = () => {
-  return dispatch => {
-    dispatch({
-      type: GET_GIG_REQUESTED
-    });
-  };
-};
-
-export const getProfile = () => {
-  return dispatch => {
-    dispatch({
-      type: GET_PROFILE_REQUESTED
-    });
-  };
-};
+        // GET_URL_FAILURE sets 'error' as the given error and 'loading' as
+        // false
+        case 'GET_URL_FAILURE':
+        return {
+            ...state,
+            error: action.payload, // Error we got back
+            loading: false
+        }
+        default:
+        return state
+    }
+}
