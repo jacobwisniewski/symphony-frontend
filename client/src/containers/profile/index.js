@@ -9,12 +9,13 @@ class Profile extends Component {
         <div>
           <div>{data.user_name}</div>
           <div>{data.spotify_id}</div>
+          <a href="/">Logout</a>
           <img src={data.profile_picture} alt="profile" />
         </div>
       );
     } else {
-        // No user credentials
-        return <Redirect to="/" />
+      // No user credentials
+      return <Redirect to="/" />;
     }
   }
 }
