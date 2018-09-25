@@ -1,7 +1,17 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 
 class Profile extends Component {
+  componentDidMount() {
+      // If not logged in prompt login
+    if (!this.props.location.state) {
+      const url = "http://localhost:5000/api/callback";
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          window.location = data.url
+        });
+    }
+  }
   render() {
     if (this.props.location.state) {
       const data = this.props.location.state.data;
@@ -15,7 +25,7 @@ class Profile extends Component {
       );
     } else {
       // No user credentials
-      return <Redirect to="/" />;
+      return null
     }
   }
 }
