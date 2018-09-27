@@ -1,7 +1,7 @@
 export const getUrl = () => dispatch => {
   // Start the fetch action
   dispatch({
-    type: "GET_URL_BEGIN"
+    type: GET_URL_BEGIN
   });
   const url = "http://localhost:5000/api/callback";
   fetch(url)
@@ -11,13 +11,13 @@ export const getUrl = () => dispatch => {
       if (!response.ok) {
         // If the request failed, dispatch the FAILURE action
         dispatch({
-          type: "GET_URL_FAILURE",
+          type: GET_URL_FAILURE,
           payload: body.error
         });
       } else {
         // The call was a success, push the data to SUCCESS action
         dispatch({
-          type: "GET_URL_SUCCESS",
+          type: GET_URL_SUCCESS,
           payload: body.url
         });
       }
