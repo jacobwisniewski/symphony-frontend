@@ -5,6 +5,7 @@
   "dependencies": {
     "connected-react-router": "^4.5.0",
     "express": "^4.16.3",
+
     "history": "^4.7.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
@@ -14,7 +15,6 @@
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"
   },
-  "proxy": "http://localhost:8080",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
