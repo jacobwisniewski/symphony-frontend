@@ -1,38 +1,32 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux'
+import { getUrl } from '../../modules/loginActions'
 
 class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isLoading: false
-    };
-  }
   componentDidMount() {
-    this.setState({
-      isLoading: true
-    });
-    this.getAuthUrl();
+    this.props.getUrl()
   }
-
-  getAuthUrl() {
-    const url = "http://localhost:5000/api/callback";
-    fetch(url)
-      .then(response => response.json())
-      .then(data =>
-        this.setState({
-          url: data.url,
-          isLoading: false
-        })
-      );
-  }
-
   render() {
-    if (this.state.isLoading) {
-      return <p>Loading...</p>;
+    const { url, loading, error } = this.props.login 
+    if (loading) {
+      return(<p>Loading...</p>)
     } else {
-      return <a href={this.state.url}>Login</a>;
+      return(<a href={url}>Login</a>)
     }
   }
 }
 
-export default Login;
+
+
+// Lets the component subscribe to redux state changes
+const mapStateToProps = state => ({
+  ...state
+})
+
+const mapDispatchToProps = dispatch => ({
+  // Add actions to this constant in the format
+  // action: () => dispatch(action())
+  getUrl: () => dispatch(getUrl())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
