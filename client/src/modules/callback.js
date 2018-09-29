@@ -1,15 +1,13 @@
-
 const initialState = {
-    url: null,
-    state: null,
-    loading: false,
+    temp_data: null,  // This data is returned from the API and is not organised in the store
+    loading: false,  
     error: null
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
         // GET_URL_BEGIN action sets 'loading' as true
-        case GET_URL_BEGIN:
+        case PUSH_CODE_BEGIN:
         return {
             ...state,
             loading: true
@@ -17,18 +15,17 @@ export default (state = initialState, action) => {
 
         // GET_URL_SUCCESS action sets 'url' as the fetched url and 'loading'
         // as false
-        case GET_URL_SUCCESS:
+        case PUSH_CODE_SUCCESS:
         return {
             ...state,
-            url: action.payload.url, // The url we got back from the call
-            state: action.payload.state, // The state we got back from the call
+            temp_data: action.payload, // Save the returned data to temp_data in the store
             loading: false
             
         }
 
         // GET_URL_FAILURE sets 'error' as the given error and 'loading' as
         // false
-        case GET_URL_FAILURE:
+        case PUSH_CODE_FAILURE:
         return {
             ...state,
             error: action.payload, // Error we got back

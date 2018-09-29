@@ -18,7 +18,7 @@ export const getUrl = () => dispatch => {
         // The call was a success, push the data to SUCCESS action
         dispatch({
           type: GET_URL_SUCCESS,
-          payload: body.url
+          payload: body
         });
       }
     });
