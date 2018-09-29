@@ -1,4 +1,3 @@
-
 const initialState = {
     url: null,
     state: null,
