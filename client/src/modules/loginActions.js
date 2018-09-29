@@ -20,7 +20,7 @@ export const getUrl = (action) => dispatch => {
         window.location.href = body.url
         dispatch({
           type: 'GET_URL_SUCCESS',
-          payload: body.url
+          payload: body
         });
       }
     });
