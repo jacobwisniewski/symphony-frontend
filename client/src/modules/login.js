@@ -6,6 +6,7 @@ const initialState = {
     error: null
 }
 
+// Login reducer
 export default (state = initialState, action) => {
     switch (action.type) {
         // GET_URL_BEGIN action sets 'loading' as true
