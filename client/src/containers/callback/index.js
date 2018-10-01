@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { pushCode } from "../../modules/callbackActions"
-const querystring = require("querystring");
+const queryString = require("query-string");
 
 class Callback extends Component {
   componentDidMount() {
-    const { access_code, state } = querystring.parse(this.props.location.search.substring(1)); // Get the values stored in the current url
+    const { code, state } = queryString.parse(this.props.location.search)
     // Check if request and response state are the same
     if (state !== this.props.prev_state) {
       alert("ERROR: Request and response identifying codes are not the same");
       this.props.history.push('/')  //Push user back to index
     }
-    console.log(state)
-    this.props.pushCode(access_code)
+    this.props.pushCode(code)
     this.props.history.push("/" + this.props.match.params.page); // Redirect the callback to the specified route
   }
 
@@ -30,7 +29,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
-  pushCode: (code) => dispatch(pushCode())
+  pushCode: (code) => dispatch(pushCode(code))
 });
 
 export default connect(

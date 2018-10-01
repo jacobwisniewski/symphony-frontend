@@ -12,16 +12,16 @@ export const getProfile = (access_code) => dispatch => {
     },
     body: JSON.stringify({ access_code: access_code})
   })
-    .then(response => response.json().then({ response, body }))
+    .then(response => response.json().then(body => ({ response, body })))
     .then(({ response, body }) => {
       if (!response.ok) {
         dispatch({
-          type: "PUSH_CODE_FAILURE",
+          type: "GET_PROFILE_FAILURE",
           payload: body.error // Send error as payload
         });
       } else {
         dispatch({
-          type: "PUSH_CODE_SUCCESS",
+          type: "GET_PROFILE_SUCCESS",
           payload: body // Send any returned data to redux
         });
       }

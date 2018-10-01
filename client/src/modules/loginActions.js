@@ -4,7 +4,6 @@ export const getUrl = (action) => dispatch => {
     type: 'GET_URL_BEGIN'
   });
   const url = "http://localhost:5000/api/" + action + "/callback";
-  console.log(url)
   fetch(url)
     // Get the response and body from the call
     .then(response => response.json().then(body => ({ response, body })))
