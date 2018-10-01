@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { pushCode } from "../../modules/callbackActions"
 const querystring = require("querystring");
 
 class Callback extends Component {
@@ -10,7 +11,8 @@ class Callback extends Component {
       alert("ERROR: Request and response identifying codes are not the same");
       this.props.history.push('/')  //Push user back to index
     }
-    this.props.access_code = access_code; // Save the access_code to the store
+    console.log(state)
+    this.props.pushCode(access_code)
     this.props.history.push("/" + this.props.match.params.page); // Redirect the callback to the specified route
   }
 
@@ -28,9 +30,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
+  pushCode: (code) => dispatch(pushCode())
 });
 
 export default connect(
-  mapDispatchToProps,
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Callback);
