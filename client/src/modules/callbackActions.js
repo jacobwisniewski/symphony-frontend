@@ -3,4 +3,7 @@ export const pushCode = (code) => dispatch => {
         type: 'PUSH_CODE',
         payload: code
     })
+    dispatch({
+        type: 'LOG_IN'
+    })
 }

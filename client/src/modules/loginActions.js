@@ -4,7 +4,7 @@ export const getUrl = (action) => dispatch => {
     type: 'GET_URL_BEGIN'
   });
   const url = "http://localhost:5000/api/" + action + "/callback";
-  fetch(url)
+  return fetch(url)
     // Get the response and body from the call
     .then(response => response.json().then(body => ({ response, body })))
     .then(({ response, body }) => {
@@ -16,11 +16,11 @@ export const getUrl = (action) => dispatch => {
         });
       } else {
         // The call was a success, push the data to SUCCESS action
-        window.location.href = body.url
         dispatch({
           type: 'GET_URL_SUCCESS',
           payload: body
         });
+        return body.url
       }
     });
 };
