@@ -10,15 +10,8 @@ class Login extends Component {
 
   onClick(event) {
     const name = event.target.name;
-    this.props.getUrl(name).then(({ url, error }) => {
-      if (error != null) {
-        // Error handling
-        alert("ERROR: Callback invalid");
-      } else {
-        // Change browser url to callback url
-        window.location.href = url;
-      }
-    });
+    this.props.getUrl(name)
+    // TODO: Error handling it backend is not working
   }
 
   render() {
