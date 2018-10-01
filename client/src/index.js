@@ -3,12 +3,9 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 import App from "./containers/app/app.js";
 import { ConnectedRouter } from "connected-react-router";
-import configureStore, { history }from "./store.js";
+import store, { history }from "./store.js";
 
 const target = document.querySelector("#root");
-
-// Create a store using configureStore()
-const store = configureStore()
 
 // Save the store within localStorage
 store.subscribe(()=>{

@@ -10,13 +10,12 @@ export const history = createHistory();
 // Check localStorage and check whether previous store is available
 const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {}
 
-// Create a store that holds the state tree, this is exporting our "store"
-export default function configureStore(initialState = persistedState) {
-  return createStore(
-    connectRouter(history)(rootReducer),
-    applyMiddleware(thunk)
-  );
-}
+// Export a store 
+export default createStore(
+  connectRouter(history)(rootReducer),
+  persistedState,
+  applyMiddleware(thunk)
+)
 
 // Some sources:
 // https://github.com/supasate/connected-react-router
