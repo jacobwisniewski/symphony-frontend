@@ -4,10 +4,15 @@ import { getProfile } from '../../modules/profileActions'
 
 class Profile extends Component {
   componentDidMount() {
+    // Checks if profile is being requested from callback
+    if (!this.props.loading) {
+    this.props.getProfile(this.props.mongo_id)
+    }
   }
   render() {
-    const { loading, spotify_id, profile_picture } = this.props
-    if (loading) {
+    const { spotify_id, profile_picture } = this.props
+    // Only returns a loading screen if spotify_id is null
+    if (spotify_id === null) {
       return ( <p>Loading...</p>)
     }
     return (
@@ -25,13 +30,12 @@ const mapStateToProps = state => ({
   spotify_id: state.profile.spotify_id,
   mongo_id: state.profile.mongo_id,
   profile_picture: state.profile.profile_picture,
-  access_code: state.callback.access_code
 })
 
 const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
-  getProfile: (access_code) => dispatch(getProfile(access_code))
+  getProfile: (mongo_id) => dispatch(getProfile(mongo_id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
