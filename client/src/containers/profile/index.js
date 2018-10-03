@@ -4,7 +4,6 @@ import { getProfile } from '../../modules/profileActions'
 
 class Profile extends Component {
   componentDidMount() {
-    this.props.getProfile(this.props.access_code)
   }
   render() {
     const { loading, spotify_id, profile_picture } = this.props
@@ -13,8 +12,8 @@ class Profile extends Component {
     }
     return (
       <div>
-        <p>Spotify ID: {this.props.spotify_id}</p>
-        <img src={this.props.profile_picture} alt={"profile"} />
+        <p>Spotify ID: {spotify_id}</p>
+        <img src={profile_picture} alt={"profile"} />
       </div>
     );
   }
