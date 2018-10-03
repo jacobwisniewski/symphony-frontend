@@ -3,6 +3,9 @@ export const getProfile = (access_code) => dispatch => {
   dispatch({
     type: "GET_PROFILE_BEGIN"
   });
+  dispatch({
+    type: "LOG_IN"
+  })
   const url = "http://localhost:5000/api/profile";
   fetch(url, {
     method: "POST",

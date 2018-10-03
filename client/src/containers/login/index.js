@@ -1,33 +1,33 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUrl } from "../../modules/loginActions";
-import { logout } from "../../modules/logoutActions"
-import store from "../../store"
+import { logout } from "../../modules/logoutActions";
 
 class Login extends Component {
   constructor() {
     super();
     this.onClick = this.onClick.bind(this);
-    this.logoutOnClick = this.logoutOnClick.bind(this)
+    this.logoutOnClick = this.logoutOnClick.bind(this);
   }
 
   onClick(event) {
+    // A click handler that deals with route handling
     const name = event.target.name;
-    this.props.getUrl(name)
-    .then(url => {
-      if (!this.props.logged_in) {
-        window.location.href = url
-      } else {
-        this.props.history.push('/' + name)
-      }
-    })
-    // TODO: Error handling it backend is not working
+    // If user is logged in, directly route to the equivalent component
+    if (this.props.logged_in) {
+      this.props.history.push("/" + name);
+    } else {
+      // If user is not logged in, get the auth url and redirect
+      this.props.getUrl(name).then(url => {
+        window.location.href = url;
+      });
+    }
+    // TODO: Error handling for backend errors.
   }
 
   logoutOnClick() {
-    console.log(store.getState())
-    this.props.logout()
-    console.log(store.getState())
+    // A click handler that resets the store state
+    this.props.logout();
   }
   render() {
     return (
@@ -41,7 +41,16 @@ class Login extends Component {
         <button name="join" onClick={this.onClick}>
           Join gig
         </button>
-        <button name="logout" onClick={this.logoutOnClick}>Logout</button>
+        {/*Renders a disable button if no user logged in*/}
+        {this.props.logged_in ? (
+          <button name="logout" onClick={this.logoutOnClick} disabled={false}>
+            Logout
+          </button>
+        ) : (
+          <button name="logout" onClick={this.logoutOnClick} disabled={true}>
+            Logout
+          </button>
+        )}
       </div>
     );
   }
@@ -53,7 +62,6 @@ const mapStateToProps = state => ({
   loading: state.login.loading,
   error: state.login.error,
   logged_in: state.callback.logged_in
-
 });
 
 const mapDispatchToProps = dispatch => ({

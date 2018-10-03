@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { pushCode } from "../../modules/callbackActions"
+import { getProfile } from "../../modules/profileActions"
 const queryString = require("query-string");
 
 class Callback extends Component {
@@ -11,7 +11,7 @@ class Callback extends Component {
       alert("ERROR: Request and response identifying codes are not the same");
       this.props.history.push('/')  //Push user back to index
     }
-    this.props.pushCode(code)
+    this.props.getProfile(code)
     this.props.history.push("/" + this.props.match.params.page); // Redirect the callback to the specified route
   }
 
@@ -22,14 +22,13 @@ class Callback extends Component {
 
 // Lets the component subscribe to redux state changes
 const mapStateToProps = state => ({
-  access_code: state.callback.access_code,
   prev_state: state.login.state // Previous state
 });
 
 const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
-  pushCode: (code) => dispatch(pushCode(code))
+  getProfile: (code) => dispatch(getProfile(code))
 });
 
 export default connect(
