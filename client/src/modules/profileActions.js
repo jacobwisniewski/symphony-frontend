@@ -1,4 +1,4 @@
-export const getProfile = (access_code) => dispatch => {
+export const createProfile = (access_code) => dispatch => {
   // Start the fetch action
   dispatch({
     type: "GET_PROFILE_BEGIN"
@@ -14,6 +14,36 @@ export const getProfile = (access_code) => dispatch => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({ access_code: access_code})
+  })
+    .then(response => response.json().then(body => ({ response, body })))
+    .then(({ response, body }) => {
+      if (!response.ok) {
+        dispatch({
+          type: "GET_PROFILE_FAILURE",
+          payload: body.error // Send error as payload
+        });
+      } else {
+        dispatch({
+          type: "GET_PROFILE_SUCCESS",
+          payload: body // Send any returned data to redux
+        });
+      }
+    });
+};
+
+export const getProfile = (mongo_id) => dispatch => {
+  // Start the fetch action
+  dispatch({
+    type: "GET_PROFILE_BEGIN"
+  });
+  const url = "http://localhost:5000/api/profile";
+  fetch(url, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ mongo_id: mongo_id})
   })
     .then(response => response.json().then(body => ({ response, body })))
     .then(({ response, body }) => {
