@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import Login from "../login"
 import Callback from "../callback"
 import Profile from "../profile"
+import Create from "../create"
+
 
 class App extends Component {
     render() {
@@ -12,6 +14,7 @@ class App extends Component {
                 <Route exact path='/' component={Login} />
                 <Route path='/:page/callback' component={Callback} />
                 <Route exact path='/profile' component={Profile} />
+                <Route path='/create' component={Create} />
             </div>
         )
     }
