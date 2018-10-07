@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { connect } from 'react-redux'
 import Login from "../login"
 import Callback from "../callback"
-import Profile from "../profile"
+import Dash from "../dash"
 
 class App extends Component {
     render() {
@@ -11,7 +11,10 @@ class App extends Component {
             <div>
                 <Route exact path='/' component={Login} />
                 <Route path='/:page/callback' component={Callback} />
-                <Route exact path='/profile' component={Profile} />
+                <Route exact path='/profile' component={Dash} />
+                <Route exact path='/create' component={Dash} />
+                <Route exact path='/join' component={Dash} />
+                <Route exact path='/gigs' component={Dash} />
             </div>
         )
     }

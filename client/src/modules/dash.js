@@ -1,6 +1,6 @@
 // A reducer for the dash component
 
-initialState = {
+const initialState = {
     toggleCreate: false,
     toggleJoin: false,
     toggleGigs: false
@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
       case "TOGGLE_CREATE":
       return {
           ...state,
-          toggleCreate: !state.toggleCreate,
+          toggleCreate: true,
           toggleJoin: false,
           toggleGigs: false
       }
@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
       return {
           ...state,
           toggleCreate: false,
-          toggleJoin: !state.toggleJoin,
+          toggleJoin: true,
           toggleGigs: false
       }
       case "TOGGLE_GIGS":
@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
           ...state,
           toggleCreate: false,
           toggleJoin: false,
-          toggleGigs: !state.toggleGigs
+          toggleGigs: true
       }
       default:
         return state;
