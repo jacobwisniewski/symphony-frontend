@@ -3,11 +3,15 @@ import { connect } from "react-redux";
 import {
   toggleJoin,
   toggleCreate,
-  toggleGigs
+  toggleGigs,
+  activateCreate,
+  activateJoin,
+  activateGigs
 } from "../../modules/dashActions";
 import Profile from "../profile"
 import Join from "../join"
 import Gigs from "../gigs"
+import Create from "../create"
 
 class Dash extends Component {
   constructor() {
@@ -19,22 +23,26 @@ class Dash extends Component {
     // Toggle the relevant tab based on the url
     if (currentPath === "/create") {
       // Execute toggleCreate
-      this.props.toggleCreate();
+      this.props.activateCreate();
     } else if (currentPath === "/join") {
       // Execute toggleJoin
-      this.props.toggleJoin();
+      this.props.activateJoin();
     } else if (currentPath === "/gigs") {
       // Execute toggleGigs
-      this.props.toggleGigs();
+      this.props.activateGigs();
     }
   }
   onClick(event) {
-    if (event.target.name === "join") {
+    const name = event.target.name
+    if (name === "join") {
       this.props.toggleJoin();
       this.props.history.push('/join')
-    } else {
+    } else if (name === 'gigs') {
       this.props.toggleGigs();
       this.props.history.push('/gigs')
+    } else if (name === 'create') {
+      this.props.toggleCreate();
+      this.props.history.push('/create')
     }
   }
   render() {
@@ -46,6 +54,12 @@ class Dash extends Component {
             Toggle join
           </button>
           {this.props.displayJoin && <Join />}
+        </div>
+        <div>
+          <button name="create" onClick={this.onClick}>
+            Toggle create
+          </button>
+          {this.props.displayCreate && <Create />}
         </div>
         <div>
           <button name="gigs" onClick={this.onClick}>
@@ -70,7 +84,10 @@ const mapDispatchToProps = dispatch => ({
   // action: () => dispatch(action())
   toggleCreate: () => dispatch(toggleCreate()),
   toggleJoin: () => dispatch(toggleJoin()),
-  toggleGigs: () => dispatch(toggleGigs())
+  toggleGigs: () => dispatch(toggleGigs()),
+  activateCreate: () => dispatch(activateCreate()),
+  activateJoin: () => dispatch(activateJoin()),
+  activateGigs: () => dispatch(activateGigs())
 });
 
 export default connect(
