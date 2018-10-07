@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
     case "TOGGLE_CREATE":
       return {
         ...state,
-        toggleCreate: true,
+        toggleCreate: !state.toggleCreate,
         toggleJoin: false,
         toggleGigs: false
       };
@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         toggleCreate: false,
-        toggleJoin: true,
+        toggleJoin: !state.toggleJoin,
         toggleGigs: false
       };
     case "TOGGLE_GIGS":
@@ -27,8 +27,29 @@ export default (state = initialState, action) => {
         ...state,
         toggleCreate: false,
         toggleJoin: false,
-        toggleGigs: true
+        toggleGigs: !state.toggleGigs
       };
+    case "ACTIVATE_CREATE":
+    return {
+      ...state,
+      toggleCreate: true,
+      toggleJoin: false,
+      toggleGigs: false
+    }
+    case "ACTIVATE_JOIN":
+    return {
+      ...state,
+      toggleCreate: false,
+      toggleJoin: true,
+      toggleGigs: false
+    }
+    case "ACTIVATE_GIGS":
+    return {
+      ...state,
+      toggleCreate: false,
+      toggleJoin: false,
+      toggleGigs: true
+    }
     default:
       return state;
   }

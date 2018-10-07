@@ -18,3 +18,24 @@ export const toggleGigs = () => dispatch => {
     type: "TOGGLE_GIGS"
   });
 };
+
+// Sets "toggleCreate" entry as true
+export const activateCreate = () => dispatch => {
+  dispatch({
+    type: "ACTIVATE_CREATE"
+  });
+};
+
+// Sets "toggleJoin" entry as true
+export const activateJoin = () => dispatch => {
+  dispatch({
+    type: "ACTIVATE_JOIN"
+  });
+};
+
+// Sets "toggleGigs" entry as true
+export const activateGigs = () => dispatch => {
+  dispatch({
+    type: "ACTIVATE_GIGS"
+  });
+};
