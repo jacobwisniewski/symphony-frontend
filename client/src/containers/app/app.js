@@ -11,10 +11,7 @@ class App extends Component {
       <div>
         <Route exact path="/" component={Login} />
         <Route path="/:page/callback" component={Callback} />
-        <Route exact path="/profile" component={Dash} />
-        <Route exact path="/create" component={Dash} />
-        <Route exact path="/join" component={Dash} />
-        <Route exact path="/gigs" component={Dash} />
+        <Route path="/dash" component={Dash} />
       </div>
     );
   }

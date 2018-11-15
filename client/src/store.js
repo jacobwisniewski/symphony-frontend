@@ -22,4 +22,4 @@ export default createStore(
 // https://github.com/notrab/create-react-app-redux/tree/master/src Used this for reference
 // https://redux.js.org/api/createstore
 
-// TODO: Create reducer
+

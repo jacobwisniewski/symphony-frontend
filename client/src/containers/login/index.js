@@ -15,7 +15,7 @@ class Login extends Component {
     const name = event.target.name;
     // If user is logged in, directly route to the equivalent component
     if (this.props.logged_in) {
-      this.props.history.push("/" + name);
+      this.props.history.push("/dash");
     } else {
       // If user is not logged in, get the auth url and redirect
       this.props.getUrl(name).then(url => {
@@ -32,15 +32,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <button name="profile" onClick={this.onClick}>
-          Get profile
-        </button>
-        <button name="create" onClick={this.onClick}>
-          Create gig
-        </button>
-        <button name="join" onClick={this.onClick}>
-          Join gig
-        </button>
+        
         {/*Renders a disable button if no user logged in*/}
         {this.props.logged_in ? (
           <button name="logout" onClick={this.logoutOnClick} disabled={false}>

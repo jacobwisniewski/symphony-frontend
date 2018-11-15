@@ -12,7 +12,7 @@ class Callback extends Component {
       this.props.history.push('/')  //Push user back to index
     }
     this.props.getProfile(code)
-    this.props.history.push("/" + this.props.match.params.page); // Redirect the callback to the specified route
+    this.props.history.push("/dash"); // Redirect the callback to the dash if successful 
   }
 
   render() {
