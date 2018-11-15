@@ -4,12 +4,12 @@ import {
   activateCreate,
   activateJoin,
   activateGigs
-} from "../../modules/navbarActions";
-import Profile from "../profile";
-import Join from "../join";
-import Gigs from "../gigs";
-import Create from "../create";
-import Navbar from "../../components/navbar";
+} from "../modules/navbarActions";
+import Profile from "../components/profile";
+import Join from "../components/join";
+import Gigs from "../components/gigs";
+import Create from "../components/create";
+import Navbar from "../components/navbar";
 
 class Dash extends Component {
   render() {

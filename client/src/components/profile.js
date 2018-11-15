@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { getProfile } from '../../modules/profileActions'
+import { getProfile } from '../modules/profileActions'
 
 class Profile extends Component {
   componentDidMount() {

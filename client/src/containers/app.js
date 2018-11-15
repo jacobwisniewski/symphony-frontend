@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
-import Login from "../login";
-import Callback from "../callback";
-import Dash from "../dash";
+import Login from "./login";
+import Callback from "./callback";
+import Dash from "./dash";
 
 class App extends Component {
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getProfile } from "../../modules/profileActions"
+import { getProfile } from "../modules/profileActions"
 const queryString = require("query-string");
 
 class Callback extends Component {

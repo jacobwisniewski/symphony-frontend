@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUrl } from "../../modules/loginActions";
-import { logout } from "../../modules/logoutActions";
+import { getUrl } from "../modules/loginActions";
+import { logout } from "../modules/logoutActions";
 
 class Login extends Component {
   constructor() {
@@ -32,7 +32,9 @@ class Login extends Component {
   render() {
     return (
       <div>
-        
+        <button name="profile" onClick={this.onClick}>
+          Login
+        </button>
         {/*Renders a disable button if no user logged in*/}
         {this.props.logged_in ? (
           <button name="logout" onClick={this.logoutOnClick} disabled={false}>

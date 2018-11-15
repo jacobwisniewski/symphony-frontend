@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import App from "./containers/app/app.js";
+import App from "./containers/app.js";
 import { ConnectedRouter } from "connected-react-router";
 import store, { history }from "./store.js";
 
