@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUrl } from "../modules/loginActions";
 import { logout } from "../modules/logoutActions";
+import Header from "../components/header"
 
 class Login extends Component {
   constructor() {
     super();
     this.onClick = this.onClick.bind(this);
-    this.logoutOnClick = this.logoutOnClick.bind(this);
   }
 
   onClick(event) {
@@ -25,26 +25,13 @@ class Login extends Component {
     // TODO: Error handling for backend errors.
   }
 
-  logoutOnClick() {
-    // A click handler that resets the store state
-    this.props.logout();
-  }
   render() {
     return (
       <div>
+        <Header />
         <button name="profile" onClick={this.onClick}>
           Login
         </button>
-        {/*Renders a disable button if no user logged in*/}
-        {this.props.logged_in ? (
-          <button name="logout" onClick={this.logoutOnClick} disabled={false}>
-            Logout
-          </button>
-        ) : (
-          <button name="logout" onClick={this.logoutOnClick} disabled={true}>
-            Logout
-          </button>
-        )}
       </div>
     );
   }
@@ -61,8 +48,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
-  getUrl: action => dispatch(getUrl(action)),
-  logout: action => dispatch(logout())
+  getUrl: (action) => dispatch(getUrl(action)),
+  logout: () => dispatch(logout())
 });
 
 export default connect(

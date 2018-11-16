@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { toggleCreate, toggleJoin, toggleGigs } from "../modules/navbarActions";
 
 class Button extends Component {
-
   render() {
     return <button onClick={this.props.page}>{this.props.name}</button>;
   }
