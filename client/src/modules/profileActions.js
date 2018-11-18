@@ -1,3 +1,5 @@
+import { api_url } from '../index'
+
 export const getProfile = access_code => dispatch => {
   // Start the fetch action
   dispatch({
@@ -6,7 +8,7 @@ export const getProfile = access_code => dispatch => {
   dispatch({
     type: "LOG_IN"
   });
-  const url = "http://localhost:5000/api/profile";
+  const url = api_url + "/profile";
   fetch(url, {
     method: "POST",
     mode: "cors",
@@ -36,7 +38,7 @@ export const refreshProfile = mongo_id => dispatch => {
   dispatch({
     type: "GET_PROFILE_BEGIN"
   });
-  const url = "http://localhost:5000/api/profile";
+  const url = api_url + "/profile";
   return fetch(url, {
     method: "POST",
     mode: "cors",
@@ -66,7 +68,7 @@ export const createGig = (mongo_id, gig_name, discoverable) => dispatch => {
   dispatch({
     type: "CREATE_GIG_BEGIN"
   });
-  const url = "http://localhost:5000/api/create";
+  const url = api_url + "/create";
   return fetch(url, {
     method: "POST",
     mode: "cors",
@@ -99,7 +101,7 @@ export const joinGig = (mongo_id, invite_code) => dispatch => {
   dispatch({
     type: "JOIN_GIG_BEGIN"
   });
-  const url = "http://localhost:5000/api/join";
+  const url = api_url + "/join";
   return fetch(url, {
     method: "POST",
     mode: "cors",

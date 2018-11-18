@@ -7,6 +7,9 @@ import store, { history }from "./store.js";
 
 const target = document.querySelector("#root");
 
+// Used to determine the root_url for the api and website
+export var api_url = 'http://jacobwisniee.ddns.net:5000/api'
+
 // Save the store within localStorage
 store.subscribe(()=>{
   localStorage.setItem('reduxState', JSON.stringify(store.getState()))
