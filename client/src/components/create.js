@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { toggleGigs } from "../modules/navbarActions";
+import { refreshProfile, createGig } from "../modules/profileActions";
 
 class Create extends Component {
   constructor() {
@@ -25,21 +27,16 @@ class Create extends Component {
   }
 
   handleSubmit(event) {
-    // When the create gig button is clicked, a new gig is created and user is redirected to gigs page
-    const url = "http://localhost:5000/api/create";
-    fetch(url, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        gig_name: this.state.gig_name,
-        private: this.state.private,
-        mongo_id: this.props.mongo_id,
-        algorithm: 'test'
-      })
-    });
+    // When submit button is clicked, create a new gig and toggle gigs page
+    this.props
+      .createGig(this.props.mongo_id, this.state.gig_name, this.state.private)
+      .then(() => {
+        // Requests for new profile data (including the new gig)
+        this.props.refreshProfile(this.props.mongo_id).then(() => {
+          // Toggles gigs page
+          this.props.toggleGigs();
+        });
+      });
     event.preventDefault();
   }
 
@@ -80,6 +77,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
+  toggleGigs: () => dispatch(toggleGigs()),
+  refreshProfile: mongo_id => dispatch(refreshProfile(mongo_id)),
+  createGig: (mongo_id, gig_name, discoverable) =>
+    dispatch(createGig(mongo_id, gig_name, discoverable))
 });
 
 export default connect(
