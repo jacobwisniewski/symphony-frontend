@@ -1,33 +1,31 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  activateCreate,
-  activateJoin,
-  activateGigs
-} from "../modules/navbarActions";
-import Profile from "../components/profile";
 import Join from "../components/join";
 import Gigs from "../components/gigs";
 import Create from "../components/create";
 import Navbar from "../components/navbar";
-import Header from "../components/header"
+import Header from "../components/header";
 
 class Dash extends Component {
   componentDidMount() {
     if (!this.props.logged_in) {
-      this.props.history.push('/')
+      this.props.history.push("/");
     }
   }
   render() {
-    return (
-      <div>
-        <Header />
-        {this.props.displayCreate && <Create />}
-        {this.props.displayJoin && <Join />}
-        {this.props.displayGigs && <Gigs />}
-        <Navbar />
-      </div>
-    );
+    if (this.props.loading) {
+      return <p>Loading...</p>;
+    } else {
+      return (
+        <div>
+          <Header />
+          {this.props.displayCreate && <Create />}
+          {this.props.displayJoin && <Join />}
+          {this.props.displayGigs && <Gigs />}
+          <Navbar />
+        </div>
+      );
+    }
   }
 }
 
@@ -36,7 +34,8 @@ const mapStateToProps = state => ({
   displayCreate: state.navbar.toggleCreate,
   displayJoin: state.navbar.toggleJoin,
   displayGigs: state.navbar.toggleGigs,
-  logged_in: state.callback.logged_in
+  logged_in: state.callback.logged_in,
+  loading: state.profile.loading
 });
 
 const mapDispatchToProps = dispatch => ({
