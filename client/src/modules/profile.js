@@ -1,22 +1,22 @@
 const initialState = {
-    loading: false,
-    error: null,
-    mongo_id: null,
-    spotify_id: null,
-    user_name: null,
-    profile_picture: null,
-    user_gigs: null
-}
+  loading: false,
+  error: null,
+  mongo_id: null,
+  spotify_id: null,
+  user_name: null,
+  profile_picture: null,
+  user_gigs: null
+};
 
 // Profile reducer
 export default (state = initialState, action) => {
-    switch (action.type) {
-      case 'GET_PROFILE_BEGIN':
+  switch (action.type) {
+    case "GET_PROFILE_BEGIN":
       return {
         ...state,
         loading: true
-      }
-      case 'GET_PROFILE_SUCCESS':
+      };
+    case "GET_PROFILE_SUCCESS":
       return {
         ...state,
         loading: false,
@@ -25,14 +25,29 @@ export default (state = initialState, action) => {
         user_name: action.payload.user_name,
         profile_picture: action.payload.profile_picture,
         user_gigs: action.payload.user_gigs
-      }
-      case 'GET_PROFILE_FAILURE':
+      };
+    case "GET_PROFILE_FAILURE":
       return {
         ...state,
         loading: false,
         error: action.payload
-      }
-      default:
-        return state;
-    }
-  };
+      };
+    case "CREATE_GIG_BEGIN":
+      return {
+        ...state,
+        loading: true
+      };
+    case "CREATE_GIG_SUCCESS":
+      return {
+        ...state,
+        loading: false
+      };
+    case "CREATE_GIG_FAILURE":
+      return {
+        ...state,
+        loading: false
+      };
+    default:
+      return state;
+  }
+};
