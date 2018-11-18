@@ -84,11 +84,42 @@ export const createGig = (mongo_id, gig_name, discoverable) => dispatch => {
     .then(({ response, body }) => {
       if (!response.ok) {
         dispatch({
-          type: "CREATE_GIG_FAILURE",
+          type: "CREATE_GIG_FAILURE"
         });
       } else {
         dispatch({
-          type: "CREATE_GIG_SUCCESS",
+          type: "CREATE_GIG_SUCCESS"
+        });
+      }
+    });
+};
+
+// TODO: Handle errors
+export const joinGig = (mongo_id, invite_code) => dispatch => {
+  dispatch({
+    type: "JOIN_GIG_BEGIN"
+  });
+  const url = "http://localhost:5000/api/join";
+  return fetch(url, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      mongo_id: mongo_id,
+      invite_code: invite_code
+    })
+  })
+    .then(response => response.json().then(body => ({ response, body })))
+    .then(({ response, body }) => {
+      if (!response.ok) {
+        dispatch({
+          type: "JOIN_GIG_FAILURE"
+        });
+      } else {
+        dispatch({
+          type: "JOIN_GIG_SUCCESS"
         });
       }
     });
