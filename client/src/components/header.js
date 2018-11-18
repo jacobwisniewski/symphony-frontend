@@ -18,7 +18,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <Link to='/' >Symphony</Link>
+        <Link to='/'>Symphony</Link>
         {/*Disables or unrenders the button when user is not logged in*/}
         {this.props.logged_in ? (
           <button name="logout" onClick={this.handleClick} disabled={false}>
