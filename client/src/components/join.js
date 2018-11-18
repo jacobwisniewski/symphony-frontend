@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { toggleGigs } from "../modules/navbarActions";
-import { refreshProfile } from "../modules/profileActions"
+import { refreshProfile, joinGig } from "../modules/profileActions";
 
 class Join extends Component {
   constructor() {
@@ -22,20 +22,15 @@ class Join extends Component {
   }
 
   handleSubmit(event) {
-    const url = "http://localhost:5000/api/join";
-    fetch(url, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        mongo_id: this.props.mongo_id,
-        invite_code: this.state.invite_code
-      })
+    // Join a gig
+    this.props.joinGig(this.props.mongo_id, this.state.invite_code).then(() => {
+      // Refresh the profile data
+      this.props.refreshProfile(this.props.mongo_id).then(() => {
+        // Toggle the gigs page
+        this.props.toggleGigs();
+      });
     });
-    this.props.refreshProfile(this.props.mongo_id)
-    this.props.toggleGigs()
+
     event.preventDefault();
   }
 
@@ -68,7 +63,8 @@ const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
   toggleGigs: () => dispatch(toggleGigs()),
-  refreshProfile: (mongo_id) => dispatch(refreshProfile(mongo_id))
+  refreshProfile: mongo_id => dispatch(refreshProfile(mongo_id)),
+  joinGig: (mongo_id, invite_code) => dispatch(joinGig(mongo_id, invite_code))
 });
 
 export default connect(

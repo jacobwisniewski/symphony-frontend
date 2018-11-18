@@ -48,20 +48,20 @@ export default (state = initialState, action) => {
         loading: false
       };
     case "JOIN_GIG_BEGIN":
-    return {
-      ...state,
-      loading: true
-    }
+      return {
+        ...state,
+        loading: true
+      };
     case "JOIN_GIG_SUCCESS":
-    return {
-      ...state,
-      loading: false
-    }
+      return {
+        ...state,
+        loading: false
+      };
     case "JOIN_GIG_FAILURE":
-    return {
-      ...state,
-      loading: false
-    }
+      return {
+        ...state,
+        loading: false
+      };
     default:
       return state;
   }
