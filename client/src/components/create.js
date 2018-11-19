@@ -2,17 +2,74 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { toggleGigs } from "../modules/navbarActions";
 import { refreshProfile, createGig } from "../modules/profileActions";
+import GoogleMapReact from "google-map-react";
+
+// Some general notes include the use of the excellent google-map-react, source of which is
+// https://github.com/google-map-react/google-map-react
+
+class Marker extends Component {
+  render() {
+    return <div style={{
+      width: '50px',
+      height: '50px',
+      '-webkit-border-radius': '25px',
+      '-moz-border-radius': '25px',
+      'border-radius': '25px',
+      background: 'red',
+      opacity: 0.5
+    }}></div>;
+  }
+}
+
+class Map extends Component {
+  render() {
+    return (
+      <div style={{ height: "300px", width: "400px" }}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: "AIzaSyAvX6atjPafAb_chcaNFhqb-HL_qq9JJE8" }}
+          defaultCenter={this.props.coords}
+          defaultZoom={15}
+          options={{
+            disableDefaultUI: true,
+            gestureHandling: "none",
+            draggableCursor: "default"
+          }}
+        >
+          <Marker lat={this.props.latitude} lng={this.props.longitude} />
+        </GoogleMapReact>
+      </div>
+    );
+  }
+}
 
 class Create extends Component {
   constructor() {
     super();
     this.state = {
       gig_name: "",
-      private: false
+      private: false,
+      location: false,
+      latitude: null,
+      longitude: null
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setPosition = this.setPosition.bind(this);
+  }
+
+  componentDidMount() {
+    // Asks the user for geolocation, if user allows then calls setPosition
+    navigator.geolocation.getCurrentPosition(this.setPosition);
+  }
+
+  setPosition(position) {
+    // Sets the latitude and longitude, also enables use of the private checkbox
+    this.setState({
+      location: true,
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+    });
   }
 
   handleChange(event) {
@@ -59,8 +116,15 @@ class Create extends Component {
             type="checkbox"
             checked={this.state.private}
             onChange={this.handleChange}
+            disabled={!this.state.location}
           />
         </div>
+        <Map
+          coords={{
+            lat: this.state.latitude,
+            lng: this.state.longitude
+          }}
+        />
         <div>
           <button onClick={this.handleSubmit}>Create</button>
         </div>

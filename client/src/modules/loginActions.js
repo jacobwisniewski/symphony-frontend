@@ -1,9 +1,11 @@
+import { api_url } from '../index'
+ 
 export const getUrl = (action) => dispatch => {
   // Start the fetch action
   dispatch({
     type: 'GET_URL_BEGIN'
   });
-  const url = "http://localhost:5000/api/" + action + "/callback";
+  const url = api_url + '/' + action + "/callback";
   return fetch(url)
     // Get the response and body from the call
     .then(response => response.json().then(body => ({ response, body })))

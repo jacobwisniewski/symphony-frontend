@@ -8,6 +8,12 @@
             "script": "start",
             "path": "client/",
             "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "build",
+            "path": "client/",
+            "problemMatcher": []
         }
     ]
 }
