@@ -1,0 +1,29 @@
+/* CSS for header component */
+
+@media only screen and (max-width: 700px) {
+  :local(.header) {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    margin-bottom: 5px;
+
+    background-color: hsl(0, 0%, 20%);
+  }
+
+  :local(.header_buttons) {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 20px;
+    margin-right: 20px;
+    float: right;
+
+    /* Text settings */
+    font-size: 20px;
+    text-align: center;
+    color: hsl(0, 0%, 70%);
+
+    background-color: transparent;
+    border: none;
+  }
+}

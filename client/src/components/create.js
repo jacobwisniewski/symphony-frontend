@@ -24,7 +24,7 @@ class Marker extends Component {
 class Map extends Component {
   render() {
     return (
-      <div style={{ height: "300px", width: "400px" }}>
+      <div style={{ height: "300px", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyAvX6atjPafAb_chcaNFhqb-HL_qq9JJE8" }}
           defaultCenter={this.props.coords}
@@ -99,7 +99,7 @@ class Create extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{'margin-top': '40px'}}>
         <div>
           Gig name
           <input

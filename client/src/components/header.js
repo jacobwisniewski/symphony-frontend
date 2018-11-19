@@ -3,6 +3,9 @@ import { logout } from "../modules/logoutActions";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom'
 
+const header_styles: any = require("./styles/header.css");
+
+
 class Header extends Component {
   constructor() {
     super();
@@ -17,17 +20,15 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
-        <Link to='/'>Symphony</Link>
+      <div className={header_styles.header} >
+        <Link style={{color: 'white'}} to='/'>Symphony</Link>
         {/*Disables or unrenders the button when user is not logged in*/}
         {this.props.logged_in ? (
-          <button name="logout" onClick={this.handleClick} disabled={false}>
+          <button name="logout" onClick={this.handleClick} disabled={false} className={header_styles.header_buttons}>
             Logout
           </button>
         ) : (
-          <button name="logout" disabled={true}>
-            Logout
-          </button>
+          null
         )}
       </div>
     );

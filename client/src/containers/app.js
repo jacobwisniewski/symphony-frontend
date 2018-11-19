@@ -8,7 +8,7 @@ import Dash from "./dash";
 class App extends Component {
   render() {
     return (
-      <div>
+      <div >
         <Route exact path="/" component={Login} />
         <Route path="/:page/callback" component={Callback} />
         <Route path="/dash" component={Dash} />

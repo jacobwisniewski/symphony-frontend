@@ -6,6 +6,9 @@ import Create from "../components/create";
 import Navbar from "../components/navbar";
 import Header from "../components/header";
 
+const dash_styles: any = require("./styles/dash.css");
+
+
 class Dash extends Component {
   componentDidMount() {
     if (!this.props.logged_in) {
@@ -17,11 +20,13 @@ class Dash extends Component {
       return <p>Loading...</p>;
     } else {
       return (
-        <div>
+        <div style={{ height: "100%" }}>
           <Header />
-          {this.props.displayCreate && <Create />}
-          {this.props.displayJoin && <Join />}
-          {this.props.displayGigs && <Gigs />}
+          <div >
+            {this.props.displayCreate && <Create style={{'margin-top': '30px'}}/>}
+            {this.props.displayJoin && <Join />}
+            {this.props.displayGigs && <Gigs />}
+          </div>
           <Navbar />
         </div>
       );
