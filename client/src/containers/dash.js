@@ -1,32 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { getDash } from "../modules/dashActions";
+import Header from "../components/header";
+import Navbar from "../components/navbar";
+import Create from "../components/create";
 import Join from "../components/join";
 import Gigs from "../components/gigs";
-import Create from "../components/create";
-import Navbar from "../components/navbar";
-import Header from "../components/header";
-
-const dash_styles: any = require("./styles/dash.css");
-
 
 class Dash extends Component {
-  componentDidMount() {
-    if (!this.props.logged_in) {
-      this.props.history.push("/");
-    }
-  }
+  componentDidMount() {}
   render() {
     if (this.props.loading) {
       return <p>Loading...</p>;
     } else {
       return (
-        <div style={{ height: "100%" }}>
+        <div>
           <Header />
-          <div >
-            {this.props.displayCreate && <Create style={{'margin-top': '30px'}}/>}
-            {this.props.displayJoin && <Join />}
-            {this.props.displayGigs && <Gigs />}
-          </div>
+          {this.props.display_create && <Create />}
+          {this.props.display_join && <Join />}
+          {this.props.display_gigs && <Gigs />}
           <Navbar />
         </div>
       );
@@ -36,16 +28,18 @@ class Dash extends Component {
 
 // Lets the component subscribe to redux state changes
 const mapStateToProps = state => ({
-  displayCreate: state.navbar.toggleCreate,
-  displayJoin: state.navbar.toggleJoin,
-  displayGigs: state.navbar.toggleGigs,
-  logged_in: state.callback.logged_in,
-  loading: state.profile.loading
+  profile: state.dash,
+  logged_in: state.login,
+  display_create: state.dash.toggle_create,
+  display_join: state.dash.toggle_join,
+  display_gigs: state.dash.toggle_gigs,
+  loading: state.dash.loading
 });
 
 const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
+  getDash: (access_code, api_key) => dispatch(getDash(access_code, api_key))
 });
 
 export default connect(

@@ -1,52 +1,41 @@
 import React, { Component } from "react";
-import { logout } from "../modules/logoutActions";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom'
-
-const header_styles: any = require("./styles/header.css");
+import { userLogout } from "../modules/loginActions";
+import { withRouter} from "react-router-dom";
 
 
 class Header extends Component {
   constructor() {
     super();
-    this.handleClick = this.handleClick.bind(this);
+    this.onClickLogout = this.onClickLogout.bind(this);
   }
 
-  handleClick() {
-    this.props.logout();
-    // TODO: This method of going back to index is hacky
-    window.location.href = "http://localhost:3000"
+  onClickLogout() {
+    // A handle for handling logging out of Symphony
+    this.props.userLogout();
+    this.props.history.push('/')
   }
-
+  
   render() {
     return (
-      <div className={header_styles.header} >
-        <Link style={{color: 'white'}} to='/'>Symphony</Link>
-        {/*Disables or unrenders the button when user is not logged in*/}
-        {this.props.logged_in ? (
-          <button name="logout" onClick={this.handleClick} disabled={false} className={header_styles.header_buttons}>
-            Logout
-          </button>
-        ) : (
-          null
-        )}
+      <div>
+        <button onClick={() => this.props.history.push('/')}>Symphony</button>
+        <button onClick={() => this.onClickLogout()}>Logout</button>
       </div>
     );
   }
 }
 
 // Lets the component subscribe to redux state changes
-const mapStateToProps = state => ({
-  logged_in: state.callback.logged_in
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
-  logout: () => dispatch(logout())
+  userLogout: () => dispatch(userLogout())
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header);
+)(withRouter(Header));

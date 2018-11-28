@@ -19,11 +19,16 @@
     float: right;
 
     /* Text settings */
-    font-size: 20px;
+    font-size: 10px;
+    font-family: 'Open Sans', sans-serif;
     text-align: center;
-    color: hsl(0, 0%, 70%);
+    color: hsl(0, 0%, 100%);
 
-    background-color: transparent;
+    background-color: hsl(141, 73%, 42%);
+    border-radius: 15px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     border: none;
   }
 }

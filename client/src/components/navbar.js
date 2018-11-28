@@ -1,26 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { toggleCreate, toggleJoin, toggleGigs } from "../modules/navbarActions";
-
-const navbar_styles: any = require("./styles/navbar.css");
+import { withRouter } from "react-router-dom";
+import { toggleCreate, toggleJoin, toggleGigs } from "../modules/dashActions"
 
 class Button extends Component {
   render() {
-    return (
-      <button className={navbar_styles.nav_buttons} onClick={this.props.page}>
-        {this.props.name}
-      </button>
-    );
+    return <button onClick={this.props.toggle}>{this.props.name}</button>;
   }
 }
 
 class Navbar extends Component {
   render() {
     return (
-      <div className={navbar_styles.bar_div}>
-        <Button page={this.props.toggleCreate} name={"Create"} />
-        <Button page={this.props.toggleJoin} name={"Join"} />
-        <Button page={this.props.toggleGigs} name={"Gigs"} />
+      <div>
+        <Button toggle={this.props.toggleCreate} name={"Create"} />
+        <Button toggle={this.props.toggleJoin} name={"Join"} />
+        <Button toggle={this.props.toggleGigs} name={"Gigs"} />
       </div>
     );
   }
@@ -40,4 +35,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Navbar);
+)(withRouter(Navbar));

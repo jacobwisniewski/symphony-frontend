@@ -1,28 +1,32 @@
-import { api_url } from '../index'
- 
-export const getUrl = (action) => dispatch => {
-  // Start the fetch action
+import { api_url } from "../index";
+
+export const getUrl = () => dispatch => {
+  // Fetches the Spotify authorisation URL from the backend
   dispatch({
-    type: 'GET_URL_BEGIN'
+    type: "URL_FETCH_BEGIN"
   });
-  const url = api_url + '/' + action + "/callback";
+
+  const url = api_url + "/callback";
   return fetch(url)
-    // Get the response and body from the call
     .then(response => response.json().then(body => ({ response, body })))
     .then(({ response, body }) => {
       if (!response.ok) {
-        // If the request failed, dispatch the FAILURE action
         dispatch({
-          type: 'GET_URL_FAILURE',
-          payload: body.error
+          type: "URL_FETCH_FAILURE",
+          payload: { error: response.statusText }
         });
       } else {
-        // The call was a success, push the data to SUCCESS action
         dispatch({
-          type: 'GET_URL_SUCCESS',
+          type: "URL_FETCH_SUCCESS",
           payload: body
         });
-        return body.url
+        return body.url;
       }
     });
 };
+
+export const userLogout = () => dispatch => {
+  dispatch({
+    type: 'USER_LOGOUT'
+  })
+}

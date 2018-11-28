@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUrl } from "../modules/loginActions";
-import { logout } from "../modules/logoutActions";
 import Header from "../components/header"
 
 class Login extends Component {
@@ -9,20 +8,22 @@ class Login extends Component {
     super();
     this.onClick = this.onClick.bind(this);
   }
+  componentDidMount() {
+    console.log(this.props.profile)
+
+  }
 
   onClick(event) {
-    // A click handler that deals with route handling
-    const name = event.target.name;
     // If user is logged in, directly route to the equivalent component
+    console.log(this.props.logged_in)
     if (this.props.logged_in) {
       this.props.history.push("/dash");
     } else {
       // If user is not logged in, get the auth url and redirect
-      this.props.getUrl(name).then(url => {
+      this.props.getUrl().then(url => {
         window.location.href = url;
       });
     }
-    // TODO: Error handling for backend errors.
   }
 
   render() {
@@ -42,14 +43,14 @@ const mapStateToProps = state => ({
   url: state.login.url,
   loading: state.login.loading,
   error: state.login.error,
-  logged_in: state.callback.logged_in
+  logged_in: state.login.logged_in,
+  profile: state.login
 });
 
 const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
   getUrl: (action) => dispatch(getUrl(action)),
-  logout: () => dispatch(logout())
 });
 
 export default connect(

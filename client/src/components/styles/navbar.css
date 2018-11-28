@@ -25,6 +25,7 @@
 
     /* Text settings */
     font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
     text-align: center;
     color: hsl(0, 0%, 70%);
 

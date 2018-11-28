@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getProfile } from "../modules/profileActions"
+import { getDash } from "../modules/dashActions"
 const queryString = require("query-string");
 
 class Callback extends Component {
@@ -11,7 +11,7 @@ class Callback extends Component {
       alert("ERROR: Request and response identifying codes are not the same");
       this.props.history.push('/')  //Push user back to index
     }
-    this.props.getProfile(code)
+    this.props.getDash(code, null)
     this.props.history.push("/dash"); // Redirect the callback to the dash if successful 
   }
 
@@ -28,7 +28,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
-  getProfile: (code) => dispatch(getProfile(code))
+  getDash: (access_code, api_key) => dispatch(getDash(access_code, api_key))
 });
 
 export default connect(
