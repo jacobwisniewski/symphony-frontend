@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
+import { resetDash } from "../modules/dashActions"
 import Login from "./login";
 import Callback from "./callback";
 import Dash from "./dash";
 
 class App extends Component {
+  componentDidMount() {
+    this.props.resetDash()
+  }
+  
   render() {
     return (
       <div>
@@ -25,6 +30,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
+  resetDash: () => dispatch(resetDash())
 });
 
 export default connect(

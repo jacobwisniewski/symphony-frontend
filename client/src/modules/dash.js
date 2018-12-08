@@ -8,6 +8,9 @@ const initialState = {
   },
   error: null,
   loading: false,
+  // find_loading and nearby_gigs are related to the same api call
+  find_loading: false,
+  nearby_gigs: null,
   toggle_create: false,
   toggle_join: false,
   toggle_gigs: true
@@ -49,6 +52,55 @@ export default (state = initialState, action) => {
         error: action.payload.error,
         loading: false
       };
+    case "LEAVE_GIG_BEGIN":
+      return {
+        ...state,
+        loading: true
+      };
+    case "LEAVE_GIG_SUCCESS":
+      return {
+        ...state,
+        loading: false
+      };
+    case "LEAVE_GIG_FAILURE":
+      return {
+        ...state,
+        error: action.payload.error,
+        loading: false
+      };
+    case "JOIN_GIG_BEGIN":
+      return {
+        ...state,
+        loading: true
+      };
+    case "JOIN_GIG_SUCCESS":
+      return {
+        ...state,
+        loading: false
+      };
+    case "JOIN_GIG_FAILURE":
+      return {
+        ...state,
+        error: action.payload.error,
+        loading: false
+      };
+    case "FIND_GIGS_BEGIN":
+      return {
+        ...state,
+        find_loading: true
+      };
+    case "FIND_GIGS_SUCCESS":
+      return {
+        ...state,
+        nearby_gigs: action.payload,
+        find_loading: false
+      };
+    case "FIND_GIGS_FAILURE":
+      return {
+        ...state,
+        error: action.payload.error,
+        find_loading: false
+      };
     case "TOGGLE_CREATE":
       return {
         ...state,
@@ -70,6 +122,17 @@ export default (state = initialState, action) => {
         toggle_join: false,
         toggle_gigs: true
       };
+      case "RESET_DASH":
+      return {
+        ...state,
+        toggle_create: false,
+        toggle_join: false,
+        toggle_gigs: true,
+        loading: false,
+        error: null,
+        nearby_gigs: null,
+        find_loading: null
+      }
     default:
       return state;
   }

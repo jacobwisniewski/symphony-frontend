@@ -8,7 +8,6 @@ import Join from "../components/join";
 import Gigs from "../components/gigs";
 
 class Dash extends Component {
-  componentDidMount() {}
   render() {
     if (this.props.loading) {
       return <p>Loading...</p>;
@@ -28,7 +27,7 @@ class Dash extends Component {
 
 // Lets the component subscribe to redux state changes
 const mapStateToProps = state => ({
-  profile: state.dash,
+  api_key: state.dash.profile.api_key,
   logged_in: state.login,
   display_create: state.dash.toggle_create,
   display_join: state.dash.toggle_join,

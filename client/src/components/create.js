@@ -54,13 +54,13 @@ class Create extends Component {
     const gig_data = {
       api_key: this.props.api_key,
       gig_name: this.state.gig_name,
-      private: this.state.discoverable,
+      private: !this.state.discoverable, // Get the opposite of this variable 
       latitude: this.state.latitude,
       longitude: this.state.longitude
     };
+    console.log(gig_data)
     // This chain first creates a gig, waits till its created, refreshes profile data and then 
     // toggles the view to gigs
-    console.log(gig_data)
     this.props
       .createGig(gig_data)
       .then(() =>
@@ -107,7 +107,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
-  createGig: gig_data => dispatch(createGig(gig_data)),
+  createGig: (gig_data) => dispatch(createGig(gig_data)),
   toggleGigs: () => dispatch(toggleGigs()),
   getDash: (access_code, api_key) => dispatch(getDash(access_code, api_key))
 });
