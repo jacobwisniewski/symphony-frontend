@@ -9,7 +9,7 @@ import Gigs from "../components/gigs";
 class Dash extends Component {
   componentDidMount() {
     // Pushes the user to index if they have not logged in
-    if (!this.props.logged_in && this.props.loading ) {
+    if (!this.props.logged_in && !this.props.loading ) {
       this.props.history.push('/')
     }
   }
