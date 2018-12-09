@@ -91,7 +91,7 @@ export const leaveGig = (api_key, invite_code) => dispatch => {
           type: "LEAVE_GIG_FAILURE",
           payload: { error: response.statusText }
         });
-        return response.ok
+        return response.ok;
       } else {
         dispatch({
           type: "LEAVE_GIG_SUCCESS",
@@ -104,9 +104,7 @@ export const leaveGig = (api_key, invite_code) => dispatch => {
 export const joinGig = (api_key, invite_code) => dispatch => {
   dispatch({
     type: "JOIN_GIG_BEGIN"
-  })
-  console.log(invite_code)
-  console.log(api_key)
+  });
   const url = api_url + "/join";
   return fetch(url, {
     method: "POST",
@@ -126,21 +124,21 @@ export const joinGig = (api_key, invite_code) => dispatch => {
           type: "JOIN_GIG_FAILURE",
           payload: { error: response.statusText }
         });
-        return response.ok
+        return {ok: response.ok, message: body.message};
       } else {
         dispatch({
           type: "JOIN_GIG_SUCCESS",
           payload: body
         });
-        return response.ok
+        return {ok: response.ok};
       }
     });
-}
+};
 
-export const findGigs = (api_key, latitude, longitude) =>  dispatch => {
+export const findGigs = (api_key, latitude, longitude) => dispatch => {
   dispatch({
     type: "FIND_GIGS_BEGIN"
-  })
+  });
   const url = api_url + "/find";
   return fetch(url, {
     method: "POST",
@@ -161,23 +159,22 @@ export const findGigs = (api_key, latitude, longitude) =>  dispatch => {
           type: "FIND_GIGS_FAILURE",
           payload: { error: response.statusText }
         });
-        return response.ok
+        return response;
       } else {
-        console.log(body.gigs)
         dispatch({
           type: "FIND_GIGS_SUCCESS",
           payload: body.gigs
         });
-        return response.ok
+        return response;
       }
     });
-}
+};
 
 export const resetDash = () => dispatch => {
   dispatch({
     type: "RESET_DASH"
-  })
-}
+  });
+};
 
 // Functions for toggling create, join and gigs components
 export const toggleCreate = () => dispatch => {

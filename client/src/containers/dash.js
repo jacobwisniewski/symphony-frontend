@@ -10,7 +10,11 @@ import Gigs from "../components/gigs";
 class Dash extends Component {
   render() {
     if (this.props.loading) {
-      return <p>Loading...</p>;
+      return <div>
+        <Header />
+        <p>Loading...</p>
+        <Navbar />
+      </div>
     } else {
       return (
         <div>

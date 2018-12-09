@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getDash } from "../modules/dashActions"
-const queryString = require("query-string");
+import querySearch from 'stringquery'
 
 class Callback extends Component {
   componentDidMount() {
-    const { code, state } = queryString.parse(this.props.location.search)
+    const { code, state } = querySearch(this.props.location.search)
     // Check if request and response state are the same
     if (state !== this.props.prev_state) {
       alert("ERROR: Request and response identifying codes are not the same");

@@ -3,17 +3,17 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 import App from "./containers/app.js";
 import { ConnectedRouter } from "connected-react-router";
-import store, { history }from "./store.js";
+import store, { history } from "./store.js";
 
 const target = document.querySelector("#root");
 
 // Used to determine the root_url for the api and website
-export var api_url = 'http://localhost:5000/api'
+export var api_url = "http://localhost:5000/api";
 
 // Save the store within localStorage
-store.subscribe(()=>{
-  localStorage.setItem('reduxState', JSON.stringify(store.getState()))
-})
+store.subscribe(() => {
+  localStorage.setItem("reduxState", JSON.stringify(store.getState()));
+});
 
 render(
   <Provider store={store}>

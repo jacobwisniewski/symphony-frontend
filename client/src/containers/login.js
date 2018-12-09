@@ -8,14 +8,9 @@ class Login extends Component {
     super();
     this.onClick = this.onClick.bind(this);
   }
-  componentDidMount() {
-    console.log(this.props.profile)
 
-  }
-
-  onClick(event) {
+  onClick() {
     // If user is logged in, directly route to the equivalent component
-    console.log(this.props.logged_in)
     if (this.props.logged_in) {
       this.props.history.push("/dash");
     } else {
