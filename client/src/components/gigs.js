@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { leaveGig, getDash } from "../modules/dashActions";
+import { leaveGig, getDash, getGigs } from "../modules/dashActions";
 
 class GigInfo extends Component {
 	constructor() {
@@ -11,10 +11,8 @@ class GigInfo extends Component {
 	}
 
 	onClick() {
-		// Leaves the gig and then refreshs the dash data
-		this.props
-			.leaveGig(this.props.api_key, this.props.data.invite_code)
-			.then(() => this.props.getDash(null, this.props.api_key));
+		// Leaves the gig
+		this.props.leaveGig(this.props.api_key, this.props.data.invite_code);
 	}
 
 	render() {
@@ -82,6 +80,10 @@ class Gig extends Component {
 }
 
 class Gigs extends Component {
+	componentDidMount() {
+		this.props.getGigs(this.props.api_key);
+	}
+
 	render() {
 		const { gigs, loading, leaveGig, getDash, api_key } = this.props;
 		if (loading || gigs == null) {
@@ -105,9 +107,10 @@ class Gigs extends Component {
 
 // Lets the component subscribe to redux state changes
 const mapStateToProps = state => ({
-	gigs: state.dash.profile.gigs,
+	gigs: state.dash.gigs,
 	api_key: state.dash.profile.api_key,
-	loading: state.dash.loading,
+	loading: state.dash.gigs_loading,
+	prev_path: state.dash.prev_path,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -116,6 +119,7 @@ const mapDispatchToProps = dispatch => ({
 	leaveGig: (api_key, invite_code) =>
 		dispatch(leaveGig(api_key, invite_code)),
 	getDash: (access_code, api_key) => dispatch(getDash(access_code, api_key)),
+	getGigs: api_key => dispatch(getGigs(api_key)),
 });
 
 export default connect(

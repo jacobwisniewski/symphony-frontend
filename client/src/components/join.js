@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { joinGig, getDash, toggleGigs, findGigs } from "../modules/dashActions";
+import {
+	joinGig,
+	getDash,
+	toggleGigs,
+	findGigs,
+	getGigs,
+} from "../modules/dashActions";
 
 class Gig extends Component {
 	render() {
@@ -37,7 +43,7 @@ class NearbyGigs extends Component {
 			geo_enabled: false,
 			latitude: null,
 			longitude: null,
-			invite_code: ""
+			invite_code: "",
 		};
 
 		this.setPosition = this.setPosition.bind(this);
@@ -50,7 +56,7 @@ class NearbyGigs extends Component {
 		} else {
 			// Change geo_enabled to false
 			this.setState({
-				geo_enabled: false
+				geo_enabled: false,
 			});
 		}
 	}
@@ -62,15 +68,15 @@ class NearbyGigs extends Component {
 			{
 				latitude: position.coords.latitude,
 				longitude: position.coords.longitude,
-				geo_enabled: true
+				geo_enabled: true,
 			},
 			// Call the backend for nearby gigs
 			() =>
 				this.props.findGigs(
 					this.props.api_key,
 					this.state.latitude,
-					this.state.longitude
-				)
+					this.state.longitude,
+				),
 		);
 	}
 
@@ -83,7 +89,7 @@ class NearbyGigs extends Component {
 			joinGig,
 			getDash,
 			toggleGigs,
-			find_loading
+			find_loading,
 		} = this.props;
 		const { geo_enabled } = this.state;
 		if (!geo_enabled) {
@@ -119,7 +125,7 @@ class Join extends Component {
 			geo_enabled: false,
 			latitude: null,
 			longitude: null,
-			invite_code: ""
+			invite_code: "",
 		};
 
 		this.onChange = this.onChange.bind(this);
@@ -134,7 +140,7 @@ class Join extends Component {
 			value = event.target.checked;
 		}
 		this.setState({
-			[name]: value
+			[name]: value,
 		});
 	}
 
@@ -147,7 +153,7 @@ class Join extends Component {
 			} else {
 				// If the invite code is valid, get the updated profile data and
 				// toggle gigs component
-				this.props.getDash(null, api_key);
+				this.props.getGigs(api_key);
 				this.props.toggleGigs();
 			}
 		});
@@ -160,7 +166,7 @@ class Join extends Component {
 			api_key,
 			findGigs,
 			getDash,
-			toggleGigs
+			toggleGigs,
 		} = this.props;
 		const { invite_code } = this.state;
 
@@ -204,7 +210,7 @@ class Join extends Component {
 const mapStateToProps = state => ({
 	api_key: state.dash.profile.api_key,
 	nearby_gigs: state.dash.nearby_gigs,
-	find_loading: state.dash.find_loading
+	find_loading: state.dash.find_loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -214,10 +220,11 @@ const mapDispatchToProps = dispatch => ({
 	getDash: (access_code, api_key) => dispatch(getDash(access_code, api_key)),
 	toggleGigs: () => dispatch(toggleGigs()),
 	findGigs: (api_key, latitude, longitude) =>
-		dispatch(findGigs(api_key, latitude, longitude))
+		dispatch(findGigs(api_key, latitude, longitude)),
+	getGigs: api_key => dispatch(getGigs(api_key)),
 });
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	mapDispatchToProps,
 )(withRouter(Join));

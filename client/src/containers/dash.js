@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getDash } from "../modules/dashActions";
 import Header from "../components/header";
 import Navbar from "../components/navbar";
 import Create from "../components/create";
@@ -42,7 +41,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   // Add actions to this constant in the format
   // action: () => dispatch(action())
-  getDash: (access_code, api_key) => dispatch(getDash(access_code, api_key))
 });
 
 export default connect(

@@ -7,10 +7,6 @@ import Callback from "./callback";
 import Dash from "./dash";
 
 class App extends Component {
-  componentDidMount() {
-    this.props.resetDash()
-  }
-  
   render() {
     return (
       <div>

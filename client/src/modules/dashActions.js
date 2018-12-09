@@ -42,7 +42,6 @@ export const createGig = gig_data => dispatch => {
   dispatch({
     type: "CREATE_GIG_BEGIN"
   });
-
   const url = api_url + "/create";
   return fetch(url, {
     method: "POST",
@@ -170,6 +169,38 @@ export const findGigs = (api_key, latitude, longitude) => dispatch => {
     });
 };
 
+export const getGigs = (api_key) => dispatch => {
+  dispatch({
+    type: "GET_GIGS_BEGIN"
+  });
+  const url = api_url + "/gigs";
+  return fetch(url, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    body: JSON.stringify({
+      api_key: api_key
+    })
+  })
+    .then(response => response.json().then(body => ({ response, body })))
+    .then(({ response, body }) => {
+      if (!response.ok) {
+        dispatch({
+          type: "GET_GIGS_FAILURE",
+          payload: { error: response.statusText }
+        });
+        return response;
+      } else {
+        dispatch({
+          type: "GET_GIGS_SUCCESS",
+          payload: body.gigs
+        });
+        return response;
+      }
+    });
+};
 export const resetDash = () => dispatch => {
   dispatch({
     type: "RESET_DASH"
@@ -194,3 +225,10 @@ export const toggleGigs = () => dispatch => {
     type: "TOGGLE_GIGS"
   });
 };
+
+export const setPrevPath = (prev_path) => dispatch => {
+  dispatch({
+    type: "SET_PREV_PATH",
+    payload: prev_path
+  })
+}

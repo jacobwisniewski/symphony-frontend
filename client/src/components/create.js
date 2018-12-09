@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getDash, createGig, toggleGigs } from "../modules/dashActions";
+import { getDash, createGig, toggleGigs, getGigs } from "../modules/dashActions";
 
 class Create extends Component {
 	constructor() {
@@ -68,7 +68,7 @@ class Create extends Component {
 		// toggles the view to gigs
 		this.props.createGig(gig_data).then(() =>
 			// Errors should not occur with create
-			this.props.getDash(null, api_key).then(() => toggleGigs()),
+			this.props.getGigs(api_key).then(() => toggleGigs()),
 		);
 	}
 
@@ -117,6 +117,7 @@ const mapDispatchToProps = dispatch => ({
 	createGig: gig_data => dispatch(createGig(gig_data)),
 	toggleGigs: () => dispatch(toggleGigs()),
 	getDash: (access_code, api_key) => dispatch(getDash(access_code, api_key)),
+	getGigs: (api_key) => dispatch(getGigs(api_key))
 });
 
 export default connect(
