@@ -6,8 +6,8 @@ const initialState = {
 		profile_picture: null,
 		gigs: null,
 	},
-  gigs: null,
-  gigs_loading: false,
+	gigs: null,
+	gigs_loading: false,
 	error: null,
 	loading: false,
 	// find_loading and nearby_gigs are related to the same api call
@@ -15,8 +15,8 @@ const initialState = {
 	nearby_gigs: null,
 	toggle_create: false,
 	toggle_join: true,
-  toggle_gigs: false,
-  prev_path: null,
+	toggle_gigs: false,
+	prev_path: null,
 };
 
 export default (state = initialState, action) => {
@@ -142,12 +142,12 @@ export default (state = initialState, action) => {
 				toggle_create: false,
 				toggle_join: false,
 				toggle_gigs: true,
-      };
-      case "SET_PREV_PATH":
-      return {
-        ...state,
-        prev_path: action.payload
-      }
+			};
+		case "SET_PREV_PATH":
+			return {
+				...state,
+				prev_path: action.payload,
+			};
 		case "RESET_DASH":
 			return {
 				...state,
@@ -157,8 +157,8 @@ export default (state = initialState, action) => {
 				loading: false,
 				error: null,
 				nearby_gigs: null,
-        find_loading: null,
-        prev_path: null
+				find_loading: null,
+				prev_path: null,
 			};
 		default:
 			return state;

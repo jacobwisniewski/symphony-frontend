@@ -94,7 +94,7 @@ class NearbyGigs extends Component {
 		const { geo_enabled } = this.state;
 		if (!geo_enabled) {
 			// When the user does not enable location
-			return <p>Enable location for proximity based joining</p>;
+			return <p>Enable location services to discover gigs near you</p>;
 		} else if (find_loading || nearby_gigs == null) {
 			// When the backend is being called for nearby gigs
 			return <p>Loading...</p>;
