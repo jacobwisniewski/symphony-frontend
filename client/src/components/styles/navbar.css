@@ -1,7 +1,7 @@
 /* CSS for the navbar component */
 
 @media only screen and (max-width: 700px) {
-  :local(.bar_div) {
+  :local(.navbar-container) {
     /* This makes the navbar persistant at the bottom above any other content */
     position: fixed;
     bottom: 0;
@@ -9,7 +9,7 @@
 
     /* This is making each button equidistant from one another  */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 
     /* This is setting the colour of the bar */
     background-color: hsl(0, 0%, 20%);
