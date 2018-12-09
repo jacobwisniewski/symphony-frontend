@@ -71,8 +71,13 @@ class Create extends Component {
 
 		// This chain first creates a gig, waits till its created, refreshes profile data and then
 		// toggles the view to gigs
-		this.props.createGig(gig_data);
-		this.props.toggleGigs();
+		this.props.createGig(gig_data).then(response => {
+			if (!response.ok) {
+				alert(response.message);
+			} else {
+				toggleGigs();
+			}
+		});
 	}
 
 	render() {
