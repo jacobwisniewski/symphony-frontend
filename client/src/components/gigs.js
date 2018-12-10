@@ -23,14 +23,7 @@ class GigInfo extends Component {
 		return (
 			<div className={styles.info_container}>
 				<div className={styles.button_container}>
-					<input
-						className={styles.invite_code_text}
-						ref={textarea => (this.textArea = textarea)}
-						onClick={this.copyCode}
-						value={invite_code}
-						spellCheck={false}
-					/>
-					<div
+					<button
 						className={styles.open_to_spotify_container}
 						onClick={() =>
 							(window.location.href = this.props.data.playlist_url)
@@ -42,9 +35,17 @@ class GigInfo extends Component {
 							height={"30px"}
 						/>
 						<p className={styles.open_to_spotify_text}>
-							Open to <br /> Spotify
+							Open in <br /> Spotify
 						</p>
-					</div>
+					</button>
+					<input
+						className={styles.invite_code_text}
+						ref={textarea => (this.textArea = textarea)}
+						onClick={this.copyCode}
+						value={invite_code}
+						spellCheck={false}
+						readOnly={true}
+					/>
 					<div>
 						<button
 							className={styles.leave_gig_button}
@@ -122,7 +123,9 @@ class Gigs extends Component {
 			return <div className={styles.gigs_container} />;
 		} else if (gigs.length === 0) {
 			return (
-				<div className={styles.gigs_container}>You're in no gigs</div>
+				<div className={styles.gigs_container}>
+				<p className={styles.no_gigs_text}>No gigs here, <br/> create or join a gig!</p>
+				</div>
 			);
 		} else {
 			const gig_list = gigs.map(gig_data => (

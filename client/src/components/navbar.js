@@ -21,10 +21,10 @@ class Navbar extends Component {
 			<div className={styles.navbar_container}>
 				<div className={styles.button_container} onClick={toggleCreate}>
 					<CreateIcon
-						style={{ "margin-left": "3px" }}
+						style={{ "margin-left": "8px" }}
 						color={display_create ? "white" : "grey"}
-						width={"20px"}
-						height={"20px"}
+						width={"40px"}
+						height={"40px"}
 					/>
 					<p
 						className={styles.button_text}
@@ -36,8 +36,8 @@ class Navbar extends Component {
 				<div className={styles.button_container} onClick={toggleJoin}>
 					<JoinIcon
 						color={display_join ? "white" : "grey"}
-						width={"20px"}
-						height={"20px"}
+						width={"40px"}
+						height={"40px"}
 					/>
 					<p
 						className={styles.button_text}
@@ -49,8 +49,8 @@ class Navbar extends Component {
 				<div className={styles.button_container} onClick={toggleGigs}>
 					<GigsIcon
 						color={display_gigs ? "white" : "grey"}
-						width={"18px"}
-						height={"18px"}
+						width={"40px"}
+						height={"40px"}
 					/>
 					<p
 						className={styles.button_text}

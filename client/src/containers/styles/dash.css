@@ -3,11 +3,11 @@
 @media only screen and (max-width: 700px) {
 	:local(.dash_container) {
 		/* Background settings */
-		background: linear-gradient(145deg, hsl(0, 6%, 51%), hsl(0, 0%, 25%));
+		background: linear-gradient(145deg, hsl(0, 6%, 50%), hsl(0, 0%, 25%));
 
 		/* Handles fullscreening the container for mobile */
-		height: 100vh;
-		width: 100vw;
+		height: 100%;
+		width: 100%;
 		position: fixed;
 		top: 0;
 		left: 0;

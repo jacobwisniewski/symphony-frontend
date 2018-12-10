@@ -3,7 +3,6 @@
 @media only screen and (max-width: 900px) {
 	:local(.navbar_container) {
 		/* Makes the navbar persistant at the bottom of the screen*/
-		flex-shrink: 0;
 
 		/* Sets buttons to be equidistant from one another  */
 		display: flex;
@@ -11,12 +10,10 @@
 
 		/* This is setting the colour of the bar */
 		background-color: hsl(0, 0%, 20%);
-
-		border-top: 1px solid black;
 	}
 
 	:local(.button_container) {
-    /* Centers the icon and button */
+		/* Centers the icon and button */
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -28,7 +25,8 @@
 		margin: 3px 20px;
 
 		/* Text settings */
-		font-size: 10px;
-    font-family: "Oxygen", sans-serif;
+		font-size: 15px;
+		font-weight: bold;
+		font-family: "Oxygen", sans-serif;
 	}
 }
