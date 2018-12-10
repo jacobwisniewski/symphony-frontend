@@ -8,6 +8,7 @@ import {
 	findGigs,
 	getGigs,
 } from "../modules/dashActions";
+import styles from './styles/join.css'
 
 class Gig extends Component {
 	render() {
@@ -171,7 +172,7 @@ class Join extends Component {
 		const { invite_code } = this.state;
 
 		return (
-			<div>
+			<div className={styles.join_container}>
 				<p>Enter a invite code or select a gig!</p>
 				<div>
 					Invite code:

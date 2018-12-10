@@ -1,0 +1,8 @@
+/* CSS for create component */
+
+@media only screen and (max-width: 700px) {
+    :local(.create_container) {
+        flex-grow: 1;
+		overflow: auto;
+    }
+}

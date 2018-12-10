@@ -2,31 +2,56 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { leaveGig, getDash, getGigs } from "../modules/dashActions";
+import { ReactComponent as ArrowIcon } from "./icons/angle-down-solid.svg";
+import { ReactComponent as SpotifyIcon } from "./icons/spotify-brands.svg";
+import styles from "./styles/gigs.css";
 
 class GigInfo extends Component {
 	constructor() {
 		super();
 
-		this.onClick = this.onClick.bind(this);
+		this.copyCode = this.copyCode.bind(this);
 	}
-
-	onClick() {
-		// Leaves the gig
-		this.props.leaveGig(this.props.api_key, this.props.data.invite_code);
+	copyCode(e) {
+		// A function for copying the invite code to the users clipboard
+		this.textArea.select();
+		document.execCommand("copy");
 	}
-
 	render() {
+		const { api_key, leaveGig } = this.props;
+		const { invite_code } = this.props.data;
 		return (
-			<div>
-				<div>Invite code: {this.props.data.invite_code}</div>
-				<div>
-					<div>
-						<button onClick={() => this.onClick()}>Leave</button>
+			<div className={styles.info_container}>
+				<div className={styles.button_container}>
+					<input
+						className={styles.invite_code_text}
+						ref={textarea => (this.textArea = textarea)}
+						onClick={this.copyCode}
+						value={invite_code}
+						spellCheck={false}
+					/>
+					<div
+						className={styles.open_to_spotify_container}
+						onClick={() =>
+							(window.location.href = this.props.data.playlist_url)
+						}
+					>
+						<SpotifyIcon
+							color={"white"}
+							width={"30px"}
+							height={"30px"}
+						/>
+						<p className={styles.open_to_spotify_text}>
+							Open to <br /> Spotify
+						</p>
 					</div>
 					<div>
-						<a href={this.props.data.playlist_url}>
-							Open in Spotify
-						</a>
+						<button
+							className={styles.leave_gig_button}
+							onClick={() => leaveGig(api_key, invite_code)}
+						>
+							Leave
+						</button>
 					</div>
 				</div>
 			</div>
@@ -53,20 +78,27 @@ class Gig extends Component {
 	render() {
 		const { name, owner_name } = this.props.gig_data;
 		const { gig_data, api_key, leaveGig, getDash } = this.props;
+		const { toggle_info } = this.state;
 		return (
 			<div>
-				<div>
-					<div>
-						<div>{name}</div>
-						<div>{owner_name}</div>
+				<div
+					className={styles.gig_container}
+					onClick={() => this.toggleInfo()}
+				>
+					<div className={styles.text_container}>
+						<p className={styles.gig_name_text}>{name}</p>
+						<p className={styles.owner_name_text}>{owner_name}</p>
 					</div>
 					<div>
-						<button onClick={() => this.toggleInfo()}>
-							Extend
-						</button>
+						<ArrowIcon
+							transform={!toggle_info ? "rotate(90)" : ""}
+							color={"white"}
+							width={"30px"}
+							height={"30px"}
+						/>
 					</div>
 				</div>
-				{this.state.toggle_info && (
+				{toggle_info && (
 					<GigInfo
 						api_key={api_key}
 						data={gig_data}
@@ -87,9 +119,11 @@ class Gigs extends Component {
 	render() {
 		const { gigs, loading, leaveGig, getDash, api_key } = this.props;
 		if (loading || gigs == null) {
-			return <p>Loading...</p>;
+			return <div className={styles.gigs_container} />;
 		} else if (gigs.length === 0) {
-			return <p>You're in no gigs, join or create one!</p>;
+			return (
+				<div className={styles.gigs_container}>You're in no gigs</div>
+			);
 		} else {
 			const gig_list = gigs.map(gig_data => (
 				<Gig
@@ -100,7 +134,7 @@ class Gigs extends Component {
 					api_key={api_key}
 				/>
 			));
-			return gig_list;
+			return <div className={styles.gigs_container}>{gig_list}</div>;
 		}
 	}
 }

@@ -7,6 +7,7 @@ import {
 	toggleGigs,
 	getGigs,
 } from "../modules/dashActions";
+import styles from "./styles/create.css"
 
 class Create extends Component {
 	constructor() {
@@ -83,7 +84,7 @@ class Create extends Component {
 	render() {
 		const { geo_enabled, gig_name } = this.state;
 		return (
-			<div>
+			<div className={styles.create_container}>
 				<div>
 					Gig name{" "}
 					<input
