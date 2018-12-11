@@ -124,7 +124,9 @@ class Gigs extends Component {
 		} else if (gigs.length === 0) {
 			return (
 				<div className={styles.gigs_container}>
-				<p className={styles.no_gigs_text}>No gigs here, <br/> create or join a gig!</p>
+					<p className={styles.no_gigs_text}>
+						No gigs here, <br /> create or join a gig!
+					</p>
 				</div>
 			);
 		} else {

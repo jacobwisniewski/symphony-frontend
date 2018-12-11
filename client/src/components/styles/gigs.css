@@ -188,7 +188,6 @@
 		border-color: hsl(0, 0%, 60%);
 		border-style: solid;
 
-
 		background-color: transparent;
 
 		/* Padding settings */
@@ -211,6 +210,13 @@
 		letter-spacing: 2px;
 		color: hsl(0, 0%, 100%);
 		text-align: center;
+
+		/* Animation settings */
+		-webkit-animation: fadein 0.5s; /* Safari, Chrome, Opera */
+		-moz-animation: fadein 0.5s; /* Firefox */
+		-ms-animation: fadein 0.5s; /* Internet Explorer */
+		-o-animation: fadein 0.5s; /* Opera */
+		animation: fadein 0.5s;
 	}
 
 	@keyframes fadein {
