@@ -1,9 +1,111 @@
 /* CSS for create component */
 
-@media only screen and (max-width: 700px) {
-    :local(.create_container) {
-		flex-grow: 1;
-		overflow-y: auto;
-		height: 100%;
-    }
+:local(.create_container) {
+	flex-grow: 1;
+	overflow-y: hidden;
+	height: 100%;
+}
+
+:local(.invite_code_container) {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 10px 0 10px 0;
+}
+
+:local(.input_box) {
+	/* Border settings */
+	border: none;
+	background-color: hsla(0, 0%, 80%, 0.8);
+
+	/* Layout settings */
+	padding: 3px 5px 3px 5px;
+	margin: 0 5px 0 5px;
+	width: 55%;
+	border-radius: 5px;
+	/* Text settings */
+	font-size: 20px;
+	font-family: "Oxygen", sans-serif;
+	font-weight: bold;
+	letter-spacing: 2px;
+	color: hsl(0, 0%, 100%);
+	text-align: left;
+}
+
+:local(.create_component_text) {
+	margin: 0;
+
+	/* Text settings */
+	font-size: 20px;
+	font-family: "Oxygen", sans-serif;
+	font-weight: bold;
+	letter-spacing: 2px;
+	color: hsl(0, 0%, 100%);
+	text-align: center;
+}
+
+:local(.button_container) {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+
+	margin: 0 0 5px 0;
+}
+
+:local(.create_button) {
+	padding: 1px 8px 3px 8px;
+
+	border: 2px solid hsl(0, 0%, 100%);
+	border-radius: 5px;
+	background-color: hsla(120, 88%, 53%, 0.3);
+	height: 40px;
+	/* Text settings */
+	font-size: 20px;
+	font-family: "Oxygen", sans-serif;
+	font-weight: bold;
+	letter-spacing: 2px;
+	color: hsl(0, 0%, 100%);
+	text-align: center;
+}
+
+:local(.create_button:disabled) {
+	padding: 1px 8px 3px 8px;
+
+	border: 2px solid hsl(0, 0%, 100%);
+	border-radius: 5px;
+	background-color: hsla(0, 100%, 50%, 0.527);
+
+	/* Text settings */
+	font-size: 20px;
+	font-family: "Oxygen", sans-serif;
+	font-weight: bold;
+	letter-spacing: 2px;
+	color: hsl(0, 0%, 100%);
+	text-align: center;
+}
+
+:local(.toggle_container) {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	margin: 5px 0 5px 0;
+}
+
+:local(.user_location_icon) {
+	/* Border settings */
+	border-radius: 50%;
+	border-color: hsla(198, 100%, 80%, 1);
+	border-width: 5px;
+	border-style: solid;
+
+	/* User location color */
+	background-color: hsla(198, 100%, 50%, 1);
+
+	/* User location settings */
+	width: 10px;
+	height: 10px;
 }

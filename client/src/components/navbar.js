@@ -21,7 +21,7 @@ class Navbar extends Component {
 			<div className={styles.navbar_container}>
 				<div className={styles.button_container} onClick={toggleCreate}>
 					<CreateIcon
-						style={{ "margin-left": "8px" }}
+						style={{ marginLeft: "8px" }}
 						color={display_create ? "white" : "grey"}
 						width={"40px"}
 						height={"40px"}

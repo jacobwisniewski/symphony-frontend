@@ -14,13 +14,14 @@ class Dash extends Component {
 			this.props.history.push("/");
 		}
 	}
+
 	render() {
 		if (this.props.loading) {
 			return (
 				<div className={styles.dash_container}>
 					<Header />
 					<div className={styles.placeholder_div}>
-						<div class="loader">Loading...</div>
+						<div className={styles.loading_spinner} />
 					</div>
 					<Navbar />
 				</div>

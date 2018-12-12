@@ -1,32 +1,30 @@
 /* CSS for the navbar component */
 
-@media only screen and (max-width: 900px) {
-	:local(.navbar_container) {
-		/* Makes the navbar persistant at the bottom of the screen*/
+:local(.navbar_container) {
+	/* Makes the navbar persistant at the bottom of the screen*/
 
-		/* Sets buttons to be equidistant from one another  */
-		display: flex;
-		justify-content: space-around;
+	/* Sets buttons to be equidistant from one another  */
+	display: flex;
+	justify-content: space-around;
 
-		/* This is setting the colour of the bar */
-		background-color: hsl(0, 0%, 20%);
-	}
+	/* This is setting the colour of the bar */
+	background-color: hsl(0, 0%, 20%);
+}
 
-	:local(.button_container) {
-		/* Centers the icon and button */
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+:local(.button_container) {
+	/* Centers the icon and button */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
-		margin-top: 5px;
-	}
+	margin-top: 5px;
+}
 
-	:local(.button_text) {
-		margin: 3px 20px;
+:local(.button_text) {
+	margin: 3px 20px;
 
-		/* Text settings */
-		font-size: 15px;
-		font-weight: bold;
-		font-family: "Oxygen", sans-serif;
-	}
+	/* Text settings */
+	font-size: 15px;
+	font-weight: bold;
+	font-family: "Oxygen", sans-serif;
 }

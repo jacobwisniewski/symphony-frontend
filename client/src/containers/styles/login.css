@@ -1,0 +1,54 @@
+/* CSS for the login component */
+
+
+	:local(.login_container) {
+		/* Handles fullscreening the container for mobile */
+		height: 100%;
+		width: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+
+		/* Handles sticky navbar and header  */
+		display: flex;
+		flex-direction: column;
+		background: linear-gradient(145deg, #ffc867, #f037a6);
+	}
+
+	:local(.content_container) {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		margin: 0 0 5% 0;
+	}
+
+	:local(.login_button) {
+		margin: 0 25% 0 25%;
+		color: hsl(0, 0%, 100%);
+		border-radius: 50px;
+		padding: 5px 20px 5px 20px;
+		border: 3px solid hsl(0, 0%, 100%);
+
+		background-color: transparent;
+		/* Text settings */
+		font-size: 20px;
+		font-family: "Oxygen", sans-serif;
+		font-weight: bold;
+		letter-spacing: 3px;
+		color: hsl(0, 0%, 100%);
+		text-align: center;
+	}
+
+	:local(.login_text) {
+		margin: 5% 5% 5% 5%;
+
+		/* Text settings */
+		font-size: 20px;
+		font-family: "Oxygen", sans-serif;
+		font-weight: bold;
+		letter-spacing: 2px;
+		color: hsl(0, 0%, 20%);
+		text-align: center;
+	}

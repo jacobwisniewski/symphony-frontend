@@ -15,8 +15,8 @@ class Profile extends Component {
 	onClickUserLogout() {
 		// A handle for handling logging out of Symphony
 		this.props.userLogout();
-    this.props.history.push("/");
-    this.props.onLogout()
+		this.props.history.push("/");
+		this.props.onLogout();
 	}
 
 	render() {
@@ -28,7 +28,7 @@ class Profile extends Component {
 				>
 					Logout
 				</button>
-        <LogoutIcon color={'white'} width={'15px'} height={'15px'} />
+				<LogoutIcon color={this.props.font_color} width={"15px"} height={"15px"} />
 			</div>
 		);
 	}
@@ -51,14 +51,36 @@ class Header extends Component {
 	}
 
 	render() {
-		const { name, profile_picture, userLogout, history } = this.props;
+		const {
+			name,
+			profile_picture,
+			userLogout,
+			history,
+			color,
+			font_color,
+		} = this.props;
 		const { toggle_profile } = this.state;
 		return (
-			<div>
-				<div className={styles.header_container}>
+			<div
+				style={{
+					backgroundColor:
+						color === "transparent"
+							? "transparent"
+							: "hsl(0, 0%, 20%)",
+					color:
+						font_color === "hsl(0, 0%, 20%)"
+							? "hsl(0, 0%, 20%)"
+							: "hsl(0, 0%, 100%)",
+				}}
+			>
+				<div
+					className={styles.header_container}
+					style={{ backgroundColor: color, color: font_color }}
+				>
 					<b
 						className={styles.header_title}
 						onClick={() => this.props.history.push("/")}
+						style={{ fontColor: font_color }}
 					>
 						♫ Symphony
 					</b>
@@ -80,7 +102,7 @@ class Header extends Component {
 							<ArrowIcons
 								transform={toggle_profile ? "rotate(180)" : ""}
 								className={styles.profile_arrow}
-								color={"white"}
+								color={font_color}
 								width={"15px"}
 								height={"15px"}
 							/>
@@ -88,7 +110,12 @@ class Header extends Component {
 					)}
 				</div>
 				{toggle_profile && (
-					<Profile userLogout={userLogout} history={history} onLogout={this.toggleProfile}/>
+					<Profile
+						userLogout={userLogout}
+						history={history}
+						onLogout={this.toggleProfile}
+						font_color={font_color}
+					/>
 				)}
 			</div>
 		);

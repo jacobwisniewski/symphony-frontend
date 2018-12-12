@@ -87,7 +87,12 @@ class Gig extends Component {
 					onClick={() => this.toggleInfo()}
 				>
 					<div className={styles.text_container}>
-						<p className={styles.gig_name_text}>{name}</p>
+						<p
+							className={styles.gig_name_text}
+							style={{ color: toggle_info ? "#1db954" : "white" }}
+						>
+							{name}
+						</p>
 						<p className={styles.owner_name_text}>{owner_name}</p>
 					</div>
 					<div>
@@ -120,7 +125,13 @@ class Gigs extends Component {
 	render() {
 		const { gigs, loading, leaveGig, getDash, api_key } = this.props;
 		if (loading || gigs == null) {
-			return <div className={styles.gigs_container} />;
+			return (
+				<div className={styles.gigs_container}>
+					<div className={styles.placeholder_div}>
+						<div className={styles.loading_spinner} />
+					</div>
+				</div>
+			);
 		} else if (gigs.length === 0) {
 			return (
 				<div className={styles.gigs_container}>

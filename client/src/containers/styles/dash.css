@@ -1,88 +1,44 @@
 /* CSS for the dash component */
 
-@media only screen and (max-width: 700px) {
-	:local(.dash_container) {
-		/* Background settings */
-		background: linear-gradient(145deg, hsl(0, 6%, 40%), hsl(0, 0%, 15%));
+:local(.dash_container) {
+	/* Background settings */
+	background: linear-gradient(145deg, hsl(0, 6%, 40%), hsl(0, 0%, 15%));
 
-		/* Handles fullscreening the container for mobile */
-		height: 100%;
-		width: 100%;
-		position: fixed;
-		top: 0;
-		left: 0;
+	/* Handles fullscreening the container for mobile */
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
 
-		/* Handles sticky navbar and header  */
-		display: flex;
-		flex-direction: column;
+	/* Handles sticky navbar and header  */
+	display: flex;
+	flex-direction: column;
+}
+
+:local(.placeholder_div) {
+	flex-grow: 1;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+:local(.loading_spinner) {
+	border: 12px solid hsla(0, 0%, 15%, 0.2);
+	border-top: 12px solid #1db954;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
 	}
-
-	:local(.placeholder_div) {
-		flex-grow: 1;
-		overflow: auto;
-    }
-    
-    :local(.loader) {
-        font-size: 10px;
-        margin: 50px auto;
-        text-indent: -9999em;
-        width: 11em;
-        height: 11em;
-        border-radius: 50%;
-        background: #ffffff;
-        background: -moz-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
-        background: -webkit-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
-        background: -o-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
-        background: -ms-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
-        background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
-        position: relative;
-        -webkit-animation: load3 1.4s infinite linear;
-        animation: load3 1.4s infinite linear;
-        -webkit-transform: translateZ(0);
-        -ms-transform: translateZ(0);
-        transform: translateZ(0);
-      }
-      :local(.loader:before) {
-        width: 50%;
-        height: 50%;
-        background: #ffffff;
-        border-radius: 100% 0 0 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        content: '';
-      }
-      :local(.loader:after) {
-        background: #0dc5c1;
-        width: 75%;
-        height: 75%;
-        border-radius: 50%;
-        content: '';
-        margin: auto;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-      }
-      @-webkit-keyframes load3 {
-        0% {
-          -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
-        }
-        100% {
-          -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
-        }
-      }
-      @keyframes load3 {
-        0% {
-          -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
-        }
-        100% {
-          -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
-        }
-      }
+	100% {
+		transform: rotate(360deg);
+	}
 }

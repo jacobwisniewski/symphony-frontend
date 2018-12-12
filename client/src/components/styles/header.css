@@ -1,144 +1,143 @@
 /* CSS for header component */
 
-@media only screen and (max-width: 700px) {
-	:local(.header_container) {
-		display: flex;
-		justify-content: space-between;
+:local(.header_container) {
+	display: flex;
+	justify-content: space-between;
 
+	background-color: hsl(0, 0%, 20%);
+	color: hsl(0, 0%, 100%);
+	border-color: hsl(0, 0%, 100%);
+}
+:local(.header_title) {
+	/* Margin settings */
+	margin: 5px 0px 10px 10px;
 
-    background-color: hsl(0, 0%, 20%);
-    
+	/* Text settings */
+	font-size: 30px;
+	font-family: "Oxygen", sans-serif;
+	color: inherit;
+}
+
+:local(.profile_container) {
+	display: flex;
+	flex-direction: horizontal;
+	align-items: center;
+
+	-webkit-animation: fadein 1s; /* Safari, Chrome, Opera */
+	-moz-animation: fadein 1s; /* Firefox */
+	-ms-animation: fadein 1s; /* Internet Explorer */
+	-o-animation: fadein 1s; /* Opera */
+	animation: fadein 1s;
+}
+
+:local(.profile_image) {
+	/* Margin settings */
+	margin: 5px 5px;
+
+	/* Makes the image circular */
+	border-radius: 50%;
+
+	border-style: solid;
+	border-color: inherit;
+	border-width: 2px;
+}
+
+:local(.profile_name) {
+	/* Margin settings */
+	margin: 0px 5px 0px 0px;
+	/* Text settings */
+	font-size: 20px;
+	font-family: "Oxygen", sans-serif;
+	text-align: center;
+	color: inherit;
+}
+
+:local(.profile_arrow) {
+	margin: 0px 5px 0px 0px;
+}
+
+:local(.logout_container) {
+	z-index: 10;
+	position: absolute;
+	right: 3px;
+	top: 45px;
+
+	display: flex;
+	align-items: center;
+
+	border: none;
+	background-color: inherit;
+
+	padding: 3px 5px 5px 0px;
+
+	-webkit-animation: fadein 0.5s; /* Safari, Chrome, Opera */
+	-moz-animation: fadein 0.5s; /* Firefox */
+	-ms-animation: fadein 0.5s; /* Internet Explorer */
+	-o-animation: fadein 0.5s; /* Opera */
+	animation: fadein 0.5s;
+}
+
+:local(.logout_button) {
+	/* Border settings */
+	border: none;
+	background-color: transparent;
+
+	/* Padding settings */
+	padding: 2px 5px 2px 10px;
+
+	/* Text settings */
+	font-size: 20px;
+	font-family: "Oxygen", sans-serif;
+	font-weight: bold;
+	text-align: center;
+	color: inherit;
+}
+
+@keyframes fadein {
+	from {
+		opacity: 0;
 	}
-	:local(.header_title) {
-		/* Margin settings */
-		margin: 5px 0px 10px 10px;
-
-		/* Text settings */
-		font-size: 30px;
-		font-family: "Oxygen", sans-serif;
-		color: hsl(0, 0%, 100%);
+	to {
+		opacity: 1;
 	}
+}
 
-	:local(.profile_container) {
-		display: flex;
-		flex-direction: horizontal;
-		align-items: center;
-
-		-webkit-animation: fadein 1s; /* Safari, Chrome, Opera */
-		-moz-animation: fadein 1s; /* Firefox */
-		-ms-animation: fadein 1s; /* Internet Explorer */
-		-o-animation: fadein 1s; /* Opera */
-		animation: fadein 1s;
+/* Firefox */
+@-moz-keyframes fadein {
+	from {
+		opacity: 0;
 	}
-
-	:local(.profile_image) {
-		/* Margin settings */
-		margin: 5px 5px;
-
-		/* Makes the image circular */
-		border-radius: 50%;
-
-		border-style: solid;
-		border-color: hsl(0, 0%, 100%);
-		border-width: 4px;
+	to {
+		opacity: 1;
 	}
+}
 
-	:local(.profile_name) {
-		/* Margin settings */
-		margin: 0px 5px 0px 0px;
-		/* Text settings */
-		font-size: 18px;
-		font-family: "Oxygen", sans-serif;
-		text-align: center;
-		color: hsl(0, 0%, 100%);
+/* Safari, Chrome,Opera */
+@-webkit-keyframes fadein {
+	from {
+		opacity: 0;
 	}
-
-	:local(.profile_arrow) {
-		margin: 0px 5px 0px 0px;
+	to {
+		opacity: 1;
 	}
+}
 
-	:local(.logout_container) {
-		z-index: 10;
-		position: absolute;
-		right: 3px;
-		top: 53px;
-
-		display: flex;
-		align-items: center;
-
-		border: none;
-		background-color: hsl(0, 0%, 35%);
-
-		padding: 3px 5px 5px 0px;
-
-		-webkit-animation: fadein 0.5s; /* Safari, Chrome, Opera */
-		-moz-animation: fadein 0.5s; /* Firefox */
-		-ms-animation: fadein 0.5s; /* Internet Explorer */
-		-o-animation: fadein 0.5s; /* Opera */
-		animation: fadein 0.5s;
+/* Internet Explorer */
+@-ms-keyframes fadein {
+	from {
+		opacity: 0;
 	}
-
-	:local(.logout_button) {
-		/* Border settings */
-		border: none;
-		background-color: transparent;
-
-		/* Padding settings */
-		padding: 2px 5px 2px 10px;
-
-		/* Text settings */
-		font-size: 18px;
-		font-family: "Oxygen", sans-serif;
-		text-align: center;
-		color: hsl(0, 0%, 100%);
+	to {
+		opacity: 1;
 	}
+}
 
-	@keyframes fadein {
-		from {
-			opacity: 0;
-		}
-		to {
-			opacity: 1;
-		}
+/* Opera */
+@-o-keyframes fadein {
+	from {
+		opacity: 0;
 	}
-
-	/* Firefox */
-	@-moz-keyframes fadein {
-		from {
-			opacity: 0;
-		}
-		to {
-			opacity: 1;
-		}
-	}
-
-	/* Safari, Chrome,Opera */
-	@-webkit-keyframes fadein {
-		from {
-			opacity: 0;
-		}
-		to {
-			opacity: 1;
-		}
-	}
-
-	/* Internet Explorer */
-	@-ms-keyframes fadein {
-		from {
-			opacity: 0;
-		}
-		to {
-			opacity: 1;
-		}
-	}
-
-	/* Opera */
-	@-o-keyframes fadein {
-		from {
-			opacity: 0;
-		}
-		to {
-			opacity: 1;
-		}
+	to {
+		opacity: 1;
 	}
 }
