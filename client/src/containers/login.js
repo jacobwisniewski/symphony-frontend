@@ -13,7 +13,7 @@ class Login extends Component {
 	onClick() {
 		// If user is logged in, directly route to the equivalent component
 		if (this.props.logged_in) {
-			this.props.history.push("/dash");
+			this.props.history.push("/dashboard");
 		} else {
 			// If user is not logged in, get the auth url and redirect
 			this.props.getUrl().then(url => {

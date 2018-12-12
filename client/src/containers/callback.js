@@ -15,7 +15,7 @@ class Callback extends Component {
 		}
 		this.props.getDash(code, null);
 		this.props.history.push({
-			pathname: "/dash",
+			pathname: "/dashboard",
 			state: { from: this.props.location.pathname },
 		}); // Redirect the callback to the dash if successful
 	}

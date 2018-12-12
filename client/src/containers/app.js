@@ -12,7 +12,7 @@ class App extends Component {
 			<div>
 				<Route exact path="/" component={Login} />
 				<Route path="/callback" component={Callback} />
-				<Route path="/dash" component={Dash} />
+				<Route path="/dashboard" component={Dash} />
 			</div>
 		);
 	}
