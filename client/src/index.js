@@ -8,7 +8,7 @@ import store, { history } from "./store.js";
 const target = document.querySelector("#root");
 
 // Used to determine the root_url for the api and website https://symphony-demo.herokuapp.com/api
-export var api_url = "https://symphony-demo.herokuapp.com/api";
+export var api_url = "https://api.smfy.xyz";
 
 // Save the store within localStorage
 store.subscribe(() => {
