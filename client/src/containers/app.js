@@ -5,11 +5,12 @@ import { resetDash } from "../modules/dashActions";
 import Login from "./login";
 import Callback from "./callback";
 import Dash from "./dash";
+import styles from './styles/app.css'
 
 class App extends Component {
 	render() {
 		return (
-			<div>
+			<div className={styles.app_container}>
 				<Route exact path="/" component={Login} />
 				<Route path="/callback" component={Callback} />
 				<Route path="/dashboard" component={Dash} />

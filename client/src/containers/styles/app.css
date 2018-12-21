@@ -1,0 +1,6 @@
+/* CSS for app component */
+
+:local(.app_container) {
+	width: 960px;
+	margin: auto;
+}

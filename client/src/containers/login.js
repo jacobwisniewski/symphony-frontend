@@ -38,13 +38,6 @@ class Login extends Component {
 						LOGIN
 					</button>
 				</div>
-				<p
-					className={styles.login_text}
-					style={{ alignSelf: "flex-end", fontSize: "15px" }}
-				>
-					Note: API can take a few seconds to launch, please be
-					patient if long load time occurs
-				</p>
 			</div>
 		);
 	}

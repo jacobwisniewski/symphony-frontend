@@ -5,11 +5,11 @@
 	background: linear-gradient(145deg, hsl(0, 6%, 40%), hsl(0, 0%, 15%));
 
 	/* Handles fullscreening the container for mobile */
-	height: 100%;
 	width: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
+	height: 100%;
+	max-width: 1000px;
+	min-height: 100%;
+	position: absolute;
 
 	/* Handles sticky navbar and header  */
 	display: flex;

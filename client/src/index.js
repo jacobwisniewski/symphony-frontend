@@ -12,16 +12,14 @@ export var api_url = "https://api.smfy.xyz";
 
 // Save the store within localStorage
 store.subscribe(() => {
-  localStorage.setItem("reduxState", JSON.stringify(store.getState()));
+	localStorage.setItem("reduxState", JSON.stringify(store.getState()));
 });
 
 render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <div>
-        <App />
-      </div>
-    </ConnectedRouter>
-  </Provider>,
-  target
+	<Provider store={store}>
+		<ConnectedRouter history={history}>
+			<App />
+		</ConnectedRouter>
+	</Provider>,
+	target,
 );

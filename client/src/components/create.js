@@ -154,7 +154,7 @@ class Create extends Component {
 				</div>
 
 				{geo_enabled && (
-					<div style={{ height: "calc(100vh - 182px - 53px - 56px", width: "100vw" }}>
+					<div style={{ height: "calc(100vh - 182px - 53px - 56px", width: "100vw", maxWidth: '1000px'  }}>
 						<GoogleMapReact
 							bootstrapURLKeys={{
 								key: API_KEY,
