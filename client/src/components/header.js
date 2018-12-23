@@ -77,13 +77,13 @@ class Header extends Component {
 					className={styles.header_container}
 					style={{ backgroundColor: color, color: font_color }}
 				>
-					<b
+					<h1
 						className={styles.header_title}
 						onClick={() => this.props.history.push("/")}
 						style={{ fontColor: font_color }}
 					>
 						♫ Symphony
-					</b>
+					</h1>
 					{/* Only display the profile container when name is not null */}
 					{name !== null && (
 						<div
@@ -96,9 +96,9 @@ class Header extends Component {
 								width={"30px"}
 								height={"30px"}
 							/>
-							<b className={styles.profile_name}>
+							<h1 className={styles.profile_name}>
 								{name.split(" ")[0]}
-							</b>
+							</h1>
 							<ArrowIcons
 								transform={toggle_profile ? "rotate(180)" : ""}
 								className={styles.profile_arrow}
