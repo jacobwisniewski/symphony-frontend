@@ -8,20 +8,18 @@ import store, { history } from "./store.js";
 const target = document.querySelector("#root");
 
 // Used to determine the root_url for the api and website https://symphony-demo.herokuapp.com/api
-export var api_url = "http://localhost:5000/api";
+export var api_url = "https://api.smfy.xyz";
 
 // Save the store within localStorage
 store.subscribe(() => {
-  localStorage.setItem("reduxState", JSON.stringify(store.getState()));
+	localStorage.setItem("reduxState", JSON.stringify(store.getState()));
 });
 
 render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <div>
-        <App />
-      </div>
-    </ConnectedRouter>
-  </Provider>,
-  target
+	<Provider store={store}>
+		<ConnectedRouter history={history}>
+			<App />
+		</ConnectedRouter>
+	</Provider>,
+	target,
 );

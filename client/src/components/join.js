@@ -8,6 +8,8 @@ import {
 	findGigs,
 	getGigs,
 } from "../modules/dashActions";
+import { ReactComponent as JoinIcon } from "./icons/angle-down-solid.svg";
+import styles from "./styles/join.css";
 
 class Gig extends Component {
 	render() {
@@ -17,19 +19,23 @@ class Gig extends Component {
 
 		return (
 			// Nearby gig component division
-			<div>
+			<div
+				className={styles.gig_container}
+				onClick={() => joinGig(api_key, invite_code)}
+			>
+				<div className={styles.text_container}>
+					{/* Gig name and owner name division */}
+					<div className={styles.gig_name_text}>{name}</div>
+					<div className={styles.owner_name_text}>{owner_name}</div>
+				</div>
 				<div>
-					<div>
-						{/* Gig name and owner name division */}
-						<div>{name}</div>
-						<div>{owner_name}</div>
-					</div>
-					<div>
-						{/* Gig join button division */}
-						<button onClick={() => joinGig(api_key, invite_code)}>
-							Join
-						</button>
-					</div>
+					<JoinIcon
+						color={"white"}
+						transform={"rotate(-90)"}
+						width={"30px"}
+						height={"30px"}
+						style={{ marginRight: "2px" }}
+					/>
 				</div>
 			</div>
 		);
@@ -49,7 +55,7 @@ class NearbyGigs extends Component {
 		this.setPosition = this.setPosition.bind(this);
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		// Handles the geolocation aspect
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(this.setPosition);
@@ -92,15 +98,29 @@ class NearbyGigs extends Component {
 			find_loading,
 		} = this.props;
 		const { geo_enabled } = this.state;
-		if (!geo_enabled) {
-			// When the user does not enable location
-			return <p>Enable location services to discover gigs near you</p>;
-		} else if (find_loading || nearby_gigs == null) {
+		if (find_loading || nearby_gigs == null) {
 			// When the backend is being called for nearby gigs
-			return <p>Loading...</p>;
+			return (
+				<div className={styles.placeholder_div}>
+					<div className={styles.loading_spinner} />
+				</div>
+			);
+		} else if (!geo_enabled) {
+			// When the user does not enable location
+			return (
+				<div className={styles.error_container}>
+					<p className={styles.error_text}>
+						Enable location services to discover gigs near you
+					</p>
+				</div>
+			);
 		} else if (nearby_gigs.length === 0) {
 			// When there are no nearby gigs after a find call
-			return <p>No gigs nearby</p>;
+			return (
+				<div className={styles.error_container}>
+					<p className={styles.error_text}>No gigs nearby :(</p>
+				</div>
+			);
 		} else {
 			// Returns all the nearby gigs
 			const gig_list = this.props.nearby_gigs.map(gig_data => (
@@ -113,7 +133,11 @@ class NearbyGigs extends Component {
 					toggleGigs={toggleGigs}
 				/>
 			));
-			return gig_list;
+			return (
+				<div className={styles.nearby_gigs_container}>
+					<div className={styles.gigs_list}>{gig_list}</div>
+				</div>
+			);
 		}
 	}
 }
@@ -171,36 +195,52 @@ class Join extends Component {
 		const { invite_code } = this.state;
 
 		return (
-			<div>
-				<p>Enter a invite code or select a gig!</p>
-				<div>
-					Invite code:
-					<input
-						name="invite_code"
-						type="text"
-						onChange={this.onChange}
-					/>
-				</div>
-				<div>
-					<button
-						disabled={this.state.invite_code.length !== 6}
-						onClick={() => this.joinGig(api_key, invite_code)}
+			<div className={styles.join_container}>
+				<div className={styles.invite_code_container}>
+					<p
+						className={styles.join_component_text}
+						style={{ fontSize: "25px" }}
 					>
-						Join
-					</button>
+						Enter an invite code
+					</p>
+					<div className={styles.input_container}>
+						<input
+							className={styles.input_box}
+							name="invite_code"
+							type="text"
+							onChange={this.onChange}
+							spellCheck={false}
+							maxLength={6}
+						/>
+						<button
+							className={styles.input_button}
+							disabled={this.state.invite_code.length !== 6}
+							onClick={() => this.joinGig(api_key, invite_code)}
+						>
+							Join
+						</button>
+					</div>
 				</div>
-				<p>-----------------</p>
 				<div>
-					<NearbyGigs
-						nearby_gigs={nearby_gigs}
-						find_loading={find_loading}
-						api_key={api_key}
-						joinGig={this.joinGig}
-						findGigs={findGigs}
-						getDash={getDash}
-						toggleGigs={toggleGigs}
-					/>
+					<hr className={styles.horizontal_lines} />
+					<p className={styles.join_component_text}>or</p>
+					<hr className={styles.horizontal_lines} />
 				</div>
+				<p
+					className={styles.join_component_text}
+					style={{ marginTop: "3%", fontSize: "25px" }}
+				>
+					Connect to a gig nearby
+				</p>
+				<NearbyGigs
+					nearby_gigs={nearby_gigs}
+					find_loading={find_loading}
+					api_key={api_key}
+					joinGig={this.joinGig}
+					findGigs={findGigs}
+					getDash={getDash}
+					toggleGigs={toggleGigs}
+				/>
 			</div>
 		);
 	}

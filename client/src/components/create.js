@@ -7,6 +7,15 @@ import {
 	toggleGigs,
 	getGigs,
 } from "../modules/dashActions";
+import styles from "./styles/create.css";
+import GoogleMapReact from "google-map-react";
+import Switch from "react-switch";
+
+class UserLocation extends Component {
+	render() {
+		return <div className={styles.user_location_icon} />;
+	}
+}
 
 class Create extends Component {
 	constructor() {
@@ -68,7 +77,6 @@ class Create extends Component {
 			latitude: latitude,
 			longitude: longitude,
 		};
-
 		// This chain first creates a gig, waits till its created, refreshes profile data and then
 		// toggles the view to gigs
 		this.props.createGig(gig_data).then(response => {
@@ -81,34 +89,96 @@ class Create extends Component {
 	}
 
 	render() {
-		const { geo_enabled, gig_name } = this.state;
+		const {
+			geo_enabled,
+			gig_name,
+			longitude,
+			latitude,
+			discoverable,
+		} = this.state;
+		const center = { lat: latitude, lng: longitude };
+		const API_KEY = process.env.REACT_APP_GOOGLE_API;
 		return (
-			<div>
+			<div className={styles.create_container}>
 				<div>
-					Gig name{" "}
-					<input
-						name="gig_name"
-						type="text"
-						onChange={this.onChange}
-					/>
-				</div>
-				<div>
-					Discoverable{" "}
-					<input
-						name="discoverable"
-						type="checkbox"
-						disabled={!geo_enabled}
-						onChange={this.onChange}
-					/>
-				</div>
-				<div>
-					<button
-						disabled={gig_name.length === 0}
-						onClick={() => this.createGig()}
+					<p
+						className={styles.create_component_text}
+						style={{ marginTop: "10px", fontSize: "25px" }}
 					>
-						Create
-					</button>
+						Create a new gig{" "}
+					</p>
+					<div className={styles.invite_code_container}>
+						<input
+							className={styles.input_box}
+							name="gig_name"
+							type="text"
+							onChange={this.onChange}
+							spellCheck={false}
+							placeholder={"Gig name"}
+							maxLength={32}
+						/>
+						<div className={styles.toggle_container}>
+							<p className={styles.create_component_text}>
+								Discoverable
+							</p>
+							<label
+								htmlFor="normal-switch"
+								style={{ marginTop: "6px", marginLeft: "5px" }}
+							>
+								<Switch
+									checked={discoverable}
+									onChange={() =>
+										this.setState({
+											discoverable: !discoverable,
+										})
+									}
+									disabled={!geo_enabled}
+									checkedIcon={false}
+									height={23}
+									width={45}
+									uncheckedIcon={false}
+									onColor={"#1db954"}
+								/>
+							</label>
+						</div>
+						<div className={styles.button_container}>
+							<button
+								className={styles.create_button}
+								disabled={gig_name.length === 0}
+								onClick={() => this.createGig()}
+							>
+								Create
+							</button>
+						</div>
+					</div>
 				</div>
+
+				{geo_enabled && (
+					<div style={{ height: "calc(100vh - 182px - 53px - 56px", width: "100vw", maxWidth: '1000px'  }}>
+						<GoogleMapReact
+							bootstrapURLKeys={{
+								key: API_KEY,
+							}}
+							options={{
+								zoomControl: false,
+								fullscreenControl: false,
+								gestureHandling: "none",
+								panControl: false,
+								mapTypeControl: false,
+								scrollwheel: false,
+							}}
+							defaultCenter={center}
+							defaultZoom={15}
+						>
+							<UserLocation
+								color={"blue"}
+								width={"20px"}
+								height={"20px"}
+								center={center}
+							/>
+						</GoogleMapReact>
+					</div>
+				)}
 			</div>
 		);
 	}
