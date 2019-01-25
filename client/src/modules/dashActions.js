@@ -117,7 +117,7 @@ export const joinGig = (api_key, invite_code) => dispatch => {
 		},
 		body: JSON.stringify({
 			api_key: api_key,
-			invite_code: invite_code,
+			invite_code: invite_code.toUpperCase(),
 		}),
 	})
 		.then(response => response.json().then(body => ({ response, body })))
