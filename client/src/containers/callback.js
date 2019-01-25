@@ -12,12 +12,13 @@ class Callback extends Component {
 				"ERROR: Request and response identifying codes are not the same",
 			);
 			this.props.history.push("/"); //Push user back to index
+		} else {
+			this.props.getDash(code, null);
+			this.props.history.push({
+				pathname: "/dashboard",
+				state: { from: this.props.location.pathname },
+			}); // Redirect the callback to the dash if successful}}
 		}
-		this.props.getDash(code, null);
-		this.props.history.push({
-			pathname: "/dashboard",
-			state: { from: this.props.location.pathname },
-		}); // Redirect the callback to the dash if successful
 	}
 
 	render() {
